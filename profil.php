@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>tim war zuletztasdfaf</title>
+    <title>Profil</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -66,12 +66,23 @@
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Page Heading
-                    <small>Secondary Text</small>
+                <h1 class="page-header">Dein Profil </br>
+                    <small>Hier kannst du alles ändern </small>
                 </h1>
             </div>
         </div>
         <!-- /.row -->
+
+        <!-- Sub Nav -->
+        <ul class="nav nav-pills">
+      <li class="active">
+        <a href="#">Profilfotos</a>
+      </li>
+      <li><a href="#">Profilfotos</a></li>
+      <li><a href="#">Meine Bilder</a></li>
+      <li><a href="#">Favoriten</a></li>
+      <li><a href="#">Followers</a></li>
+    </ul>
 
         <!-- Projects Row -->
         <div class="row">
