@@ -45,13 +45,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="#">Finde Locations</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Login</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#">Registrieren</a>
                     </li>
                 </ul>
             </div>
@@ -66,8 +66,8 @@
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Page Heading
-                    <small>Secondary Text</small>
+                <h1 class="page-header">Unser Plattfromname
+                    <small>Machen Sie sich ein Bild davon!</small>
                 </h1>
             </div>
         </div>
@@ -105,73 +105,10 @@
         </div>
         <!-- /.row -->
 
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-
         <hr>
 
         <!-- Pagination -->
-        <div class="row text-center">
+        <!-- <div class="row text-center">
             <div class="col-lg-12">
                 <ul class="pagination">
                     <li>
@@ -197,16 +134,16 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> -->
         <!-- /.row -->
 
-        <hr>
+        <!-- <hr> -->
 
         <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Unsere Plattform 2016</p>
                 </div>
             </div>
             <!-- /.row -->
