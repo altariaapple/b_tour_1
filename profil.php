@@ -118,12 +118,6 @@
         </div>
         <div class="modal-body">
           <div class="form-group row">
-            <label for="Gender" class="col-sm-2 form-control-label">Anrede</label>
-            <div class="col-sm-5">
-              <select class="form-control form-control-sm" id="Gender" name="gender">
-                <option value="">--</option>
-                <option value="Frau">Frau</option>
-                <option value="Herr">Herr</option>
               </select>
             </div>
           </div>
