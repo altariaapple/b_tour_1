@@ -1,3 +1,38 @@
+<?php
+  $error = false;
+  $error_msg = "";
+  $success = false;
+  $success_msg = "";
+
+  if(isset($_POST['register-submit'])){
+  // Kontrolle mit isset, ob email und password ausgefüllt wurde
+  if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirm-password'])){
+
+    // Werte aus POST-Array auf SQL-Injections prüfen und in Variablen schreiben
+    $email = filter_data($_POST['email']);
+    $password = filter_data($_POST['password']);
+    $confirm_password = filter_data($_POST['confirm-password']);
+    if($password == $confirm_password){
+      // register liefert bei erfolgreichem Eintrag in die DB den Wert TRUE zurück, andernfalls FALSE
+      $result = register($email, $password);
+      if($result){
+        $success = true;
+        $success_msg = "Sie haben erfolgreich registriert.</br>
+        Sie können sich nun einloggen.</br>";
+      }else{
+        $error = true;
+        $error_msg .= "Es gibt ein Problem mit der Datenbankverbindung.</br>";
+      }
+    }else{
+      $error = true;
+      $error_msg .= "Die Passwörter stimmen nicht überein.</br>";
+    }
+  }else{
+    $error = true;
+    $error_msg .= "Bitte füllen Sie alle Felder aus.</br>";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,6 +94,119 @@
         <!-- /.container -->
     </nav>
 
+<<<<<<< HEAD
+=======
+    <!-- modal window for login -->
+    <div class="modal fade" id="loginModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4>Login</h4>
+          </div>
+
+          <div class="modal-body">
+            <!--  login form -->
+            <form id="login-form" action="index.php" method="post" role="form">
+    					<div class="form-group">
+                <h5>Benutzername</h5>
+    						<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="E-Mail-Adresse" value="">
+    					</div>
+    					<div class="form-group">
+                <h5>Passwort</h5>
+    						<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Passwort">
+    					</div>
+              <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="login">
+                </div>
+              </div>
+            </div>
+            </form>
+            <!-- /login form  -->
+            <?php
+              // Gibt es einen Erfolg zu vermelden?
+              if($success == true){
+            ?>
+                <div class="alert alert-success" role="alert"><?php echo $success_msg; ?></div>
+            <?php
+              }   // schliessen von if($success == true)
+              // Gibt es einen Fehler?
+              if($error == true){
+            ?>
+                <div class="alert alert-danger" role="alert"><?php echo $error_msg; ?></div>
+            <?php
+              }   // schliessen von if($success == true)
+            ?>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- /modal login window -->
+
+    <!-- modal window for register -->
+    <div class="modal fade" id="registerModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4>Registrierung</h4>
+          </div>
+
+          <div class="modal-body">
+            <!-- register form -->
+            <form id="register-form" action="index.php" method="post" role="form">
+              <h5>Benutzername</h5>
+              <div class="form-group">
+                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Benutzername" value="">
+              </div>
+
+              <h5>E-Mail</h5>
+              <div class="form-group">
+                <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="E-Mail-Adresse" value="">
+              </div>
+
+              <h5>Vorname</h5>
+              <div class="form-group">
+                <input type="text" name="firstname" id="email" tabindex="2" class="form-control" placeholder="Vorname" value="">
+              </div>
+
+              <h5>Nachname</h5>
+              <div class="form-group">
+                <input type="text" name="lastname" id="email" tabindex="2" class="form-control" placeholder="Nachname" value="">
+              </div>
+
+              <h5>Passwort</h5>
+              <div class="form-group">
+                <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Passwort">
+              </div>
+
+              <h5>Passwort bestätigen</h5>
+              <div class="form-group">
+                <input type="password" name="confirm-password" id="confirm-password" tabindex="4" class="form-control" placeholder="Passwort bestätigen">
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" name="register-submit" id="register-submit" tabindex="5" class="form-control btn btn-register" value="Registrieren">
+                  </div>
+                </div>
+              </div>
+
+            </form>
+            <!-- /register form -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /modal register window -->
+
+>>>>>>> 15dd4bffd60402f2a55556966a9af196ffa61ed1
     <!-- Page Content -->
     <div class="container">
 

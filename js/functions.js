@@ -5,8 +5,8 @@
 /* -------------------------------- */
 
 
-/* Button-group Anreise, jeweiligen Text anzeigen */
-/*Profil.php Anzeigen Inhalte, je nach  Buttons */
+/* ---------- profil.php ----------- */
+/*nur section profilfoto zeigts an */
 
 $(document).ready(function() {
           $("section#profilfoto").show();
@@ -14,6 +14,7 @@ $(document).ready(function() {
           $("section#favoriten").hide();
           $("section#follower").hide();
 });
+/*je nach button */
 
 $(document).ready(function() {
     $('button').click(function(event) {
