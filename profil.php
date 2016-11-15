@@ -1,10 +1,3 @@
-<?php
-
-require_once("system/data.php");
-
- ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +25,7 @@ require_once("system/data.php");
     <![endif]-->
 
 </head>
+<p></p>
 
 <body>
 

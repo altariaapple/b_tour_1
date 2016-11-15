@@ -36,6 +36,7 @@
 
 
    </nav>
+   <p> </p>
 
    <div class="container">
 
@@ -129,7 +130,6 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
  </body>
  </html>
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -295,4 +295,3 @@
 </body>
 
 </html>
->>>>>>> 47af5ba6491584cad3f0d531a12e6e10834cc8a4
