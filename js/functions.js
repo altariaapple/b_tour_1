@@ -1,7 +1,11 @@
 /*   b_Tour_1 javascript  */
 /* Tim Glatthard, Carmina Grünig, Joel Viotti */
 
+/* ---------- index.php ----------- */
+/* -------------------------------- */
 
+
+/* Button-group Anreise, jeweiligen Text anzeigen */
 /*Profil.php Anzeigen Inhalte, je nach  Buttons */
 
 $(document).ready(function() {
