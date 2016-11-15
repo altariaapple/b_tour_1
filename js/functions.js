@@ -2,20 +2,45 @@
 /* Tim Glatthard, Carmina Grünig, Joel Viotti */
 
 
-/* Button-group Anreise, jeweiligen Text anzeigen */
+/*Profil.php Anzeigen Inhalte, je nach  Buttons */
+
+$(document).ready(function() {
+          $("section#profilfoto").show();
+          $("section#meinefotos").hide();
+          $("section#favoriten").hide();
+          $("section#follower").hide();
+
+});
+
 $(document).ready(function() {
     $('button').click(function(event) {
     	/* die var pickedOption beinhaltet die jeweilige ID des Buttons, auf welchen geklickt wurde */
         var pickedOption = event.target.id;
 
-        if (pickedOption == "fuss"){
-        	$(".anreiseText").text("Zu Fuss: Von Bahnhof Biel aus ca. 5 Minuten Richtung Schiffländte gehen. Von der Schiffländte ca. 2 Minuten der Ländtestrasse entlang bis zum Seeufer.");
+        if (pickedOption == "profilfoto"){
+            $("section#profilfoto").show();
+            $("section#meinefotos").hide();
+            $("section#favoriten").hide();
+            $("section#follower").hide();
         }
-        else if (pickedOption == "auto") {
-        	$(".anreiseText").text("Auto: Bernstrasse entlang bis Seelandgymnasium Biel. Dort rechts einbiegen zu den angeschriebenen Parkplätzen. Von den Parkplätzen aus ca. 3 Minuten Gehweg der Ländtestrasse entlang bis zum Seeufer.");
+        else if (pickedOption == "meinefotos"){
+            $("section#meinefotos").show();
+            $("section#profilfoto").hide();
+            $("section#favoriten").hide();
+            $("section#follower").hide();
         }
-        else if (pickedOption == "oeV") {
-        	$(".anreiseText").text("ÖV: g Schiffländte nehmen, bis Station Schiffländte. Anschiessend ca. 2 Minuten der Ländtestrasse entlang bis zum Seeufer.");
+        else if (pickedOption == "favoriten"){
+            $("section#favoriten").show();
+            $("section#profilfoto").hide();
+            $("section#meinefotos").hide();
+            $("section#follower").hide();
         }
+        else if (pickedOption == "follower"){
+          $("section#follower").show();
+          $("section#profilfoto").hide();
+          $("section#meinefotos").hide();
+          $("section#favoriten").hide();
+        }
+
     });
 });
