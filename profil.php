@@ -51,7 +51,7 @@
                         <a href="profil.php">Mein Profil</a>
                     </li>
                     <li>
-                        <a href="">Logut</a>
+                        <a href="index.php">Logout</a>
                     </li>
                 </ul>
             </div>

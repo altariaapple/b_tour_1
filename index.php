@@ -12,6 +12,8 @@
   $success = false;
   $success_msg = "";
 
+  $post_pictures = get_pictures();
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Photoloc</a>
+                <a class="navbar-brand" href="index.php">Photoloca</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -79,28 +81,32 @@
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Photoloc
+                <h1 class="page-header">Photoloca
                     <small>Machen Sie sich ein Bild davon!</small>
                 </h1>
             </div>
         </div>
         <!-- /.row -->
 
-        <!-- locations Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
+      <div class="row">
+      <?php while($pictures = mysqli_fetch_assoc($post_pictures)) {
+          $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+        ?>
+            <div class="col-md-4">
                 <a href="#">
-                    <img class="img-responsive" src="../img_uploads/31775_1.jpg" alt="">
+                    <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
                 </a>
                 <h3>
-                    <a href="#">Bild Titel</a>
+                    <a href="#"><?php echo $pictures['title']; ?></a>
                 </h3>
-                <p>Kurzbeschrieb</p>
+                <p><?php echo $pictures['description']; ?></p>
                 <p>Tags</p>
-                <p>von >Uploader< </p>
+                <p>von <?php echo $post_picture_owner['first_name']. " " .$post_picture_owner['last_name']; ?></p>
             </div>
-        </div>
-        <!-- /.row -->
+
+      <?php }?>
+      </div>
+      <!-- /.row -->
 
         <hr>
 
@@ -108,7 +114,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Photoloc 2016</p>
+                    <p>Copyright &copy; Photoloca 2016</p>
                 </div>
             </div>
             <!-- /.row -->

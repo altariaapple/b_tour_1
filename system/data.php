@@ -16,7 +16,7 @@
   function get_result($sql)
   {
     $db = get_db_connection();
-    echo $sql ."<br>";
+    //echo $sql ."<br>";
     $result = mysqli_query($db, $sql);
     mysqli_close($db);
     return $result;
@@ -42,6 +42,19 @@
  /* ----------------------------------------------------------------------------- */
 
 
+ /* ---- index.php ---- */
+ /* ----------------------- */
+
+ function get_pictures(){
+   $sql = "SELECT * FROM picture";
+   return get_result($sql);
+ }
+
+ function get_picture_owner($ownerID){
+   $sql = "SELECT first_name, last_name FROM user WHERE user_id = '$ownerID';";
+   return get_result($sql);
+ }
+ /* ----------------------------------------------------------------------------- */
 
  function register($username, $email, $firstname, $lastname, $password){
    $sql = "INSERT INTO user (benutzer_name, email, first_name, last_name, password) VALUES ('$username', '$email', '$firstname', '$lastname', '$password');";
