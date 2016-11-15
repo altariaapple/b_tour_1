@@ -1,5 +1,9 @@
 <?php
 
+  session_start();
+  if(isset($_SESSION['id'])) unset($_SESSION['id']);
+  session_destroy();
+
   require_once("system/data.php");
 
 
@@ -9,6 +13,7 @@
   $success_msg = "";
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['userid'])){
+    header("Location:index.php");
+  }
+  else{
+    $user_id = $_SESSION['userid'];
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +60,7 @@
                         <a href="profil.php">Mein Profil</a>
                     </li>
                     <li>
-                        <a href="">Logout</a>
+                        <a href="index.php">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -241,4 +250,3 @@
 </body>
 
 </html>
->>>>>>> 47af5ba6491584cad3f0d531a12e6e10834cc8a4
