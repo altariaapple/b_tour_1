@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
  <!DOCTYPE html>
  <html lang="en">
@@ -36,7 +37,6 @@
 
 
    </nav>
-   <p> </p>
 
    <div class="container">
 
@@ -130,6 +130,9 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
  </body>
  </html>
+=======
+=======
+>>>>>>> f07d350c4a26ae483606cde1364deaa310587b63
 <!DOCTYPE html>
 <html lang="en">
 
@@ -183,7 +186,7 @@
                         <a href="profil.php">Mein Profil</a>
                     </li>
                     <li>
-                        <a href="">Logut</a>
+                        <a href="">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -203,6 +206,84 @@
             </div>
         </div>
         <!-- /.row -->
+
+        <!-- Button trigger modal -->
+        <div class="panel panel-default container-fluid"> <!-- fluid -->
+          <div class="panel-heading row">
+            <div class="col-sm-6">
+                <h4>Laden Sie hier ein Bild hoch!</h4>
+            </div>
+            <div class="col-xs-6 text-right">
+                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#myModal">Bild hochladen</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="col-sm-3">
+              <!-- Bild -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <form enctype="multipart/form-data" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" method="post">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabel">Laden Sie hier ein Bild hoch</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group row">
+                    <label for="Gender" class="col-sm-2 form-control-label">Foto</label>
+                    <div class="form-group row">
+                      <!-- http://plugins.krajee.com/file-input -->
+                      <label for="Tel" class="col-sm-2 form-control-label"></label>
+                      <div class="col-sm-10">
+                        <input type="file" name="profil_img">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Beschreibung</label>
+                    <div class="col-sm-5 col-xs-6">
+                      <textarea rows="4" cols="50"> Schreiben Sie hier eine Bildbeschreibung
+                      </textarea>
+
+                    </div>
+                    <div class="col-sm-5 col-xs-6">
+
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="Email" class="col-sm-2 form-control-label">Location</label>
+                    <div class="col-sm-10">
+                      <form action="">
+                        <input type="checkbox" name="location" value="bern"> bern <br>
+                      </form>
+
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="Passwort" class="col-sm-2 form-control-label">Tags</label>
+                    <div class="col-sm-10">
+                      <form action="">
+                        <input type="checkbox" name="tags" value="sonnig"> sonnig <br>
+                      </form>
+                  </div>
+
+
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
+                  <button type="submit" class="btn btn-success btn-sm" name="update-submit">Bild hochladen</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
 
         <!-- Locations Row -->
         <div class="row">
@@ -295,3 +376,4 @@
 </body>
 
 </html>
+>>>>>>> 47af5ba6491584cad3f0d531a12e6e10834cc8a4

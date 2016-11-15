@@ -59,7 +59,7 @@
                         <a href="index.php">Finde Locations</a>
                     </li>
                     <li>
-                        <a href="login.php">Login</a>
+                        <a href="login.php">Login / Registration</a>
                     </li>
                 </ul>
             </div>

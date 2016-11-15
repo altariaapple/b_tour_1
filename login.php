@@ -93,7 +93,7 @@
                         <a href="index.php">Finde Locations</a>
                     </li>
                     <li>
-                        <a href="login.php">Login</a>
+                        <a href="login.php">Login / Registration</a>
                     </li>
                 </ul>
             </div>
@@ -175,6 +175,8 @@
               </form>
               <!-- /register form -->
             </div>
+          </div>
+          <!-- /.row -->
             <?php
               // Gibt es einen Erfolg zu vermelden?
               if($success == true){
@@ -189,8 +191,6 @@
             <?php
               }   // schliessen von if($success == true)
             ?>
-        </div>
-        <!-- /.row -->
 
         <hr>
 
