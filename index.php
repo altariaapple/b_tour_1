@@ -1,20 +1,28 @@
 <?php
+
+  require_once("system/data.php");
+
+
   $error = false;
   $error_msg = "";
   $success = false;
   $success_msg = "";
 
+
   if(isset($_POST['register-submit'])){
   // Kontrolle mit isset, ob email und password ausgefüllt wurde
-  if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirm-password'])){
+  if(!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['confirm-password'])){
 
     // Werte aus POST-Array auf SQL-Injections prüfen und in Variablen schreiben
-    $email = filter_data($_POST['email']);
-    $password = filter_data($_POST['password']);
-    $confirm_password = filter_data($_POST['confirm-password']);
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm-password'];
     if($password == $confirm_password){
       // register liefert bei erfolgreichem Eintrag in die DB den Wert TRUE zurück, andernfalls FALSE
-      $result = register($email, $password);
+      $result = register($username, $email, $firstname, $lastname, $password);
       if($result){
         $success = true;
         $success_msg = "Sie haben erfolgreich registriert.</br>
@@ -27,10 +35,12 @@
       $error = true;
       $error_msg .= "Die Passwörter stimmen nicht überein.</br>";
     }
-  }else{
-    $error = true;
-    $error_msg .= "Bitte füllen Sie alle Felder aus.</br>";
   }
+
+  // else{
+  //   $error = true;
+  //   $error_msg .= "Bitte füllen Sie alle Felder aus.</br>";
+  // }
 }
 ?>
 <!DOCTYPE html>
@@ -119,7 +129,7 @@
               <div class="form-group">
               <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                  <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="login">
+                  <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-register" value="login">
                 </div>
               </div>
             </div>
@@ -161,44 +171,58 @@
             <form id="register-form" action="index.php" method="post" role="form">
               <h5>Benutzername</h5>
               <div class="form-group">
-                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Benutzername" value="">
+                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Benutzername" value="" required>
               </div>
 
               <h5>E-Mail</h5>
               <div class="form-group">
-                <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="E-Mail-Adresse" value="">
+                <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="E-Mail-Adresse" value="" required>
               </div>
 
               <h5>Vorname</h5>
               <div class="form-group">
-                <input type="text" name="firstname" id="email" tabindex="2" class="form-control" placeholder="Vorname" value="">
+                <input type="text" name="firstname" id="email" tabindex="2" class="form-control" placeholder="Vorname" value="" required>
               </div>
 
               <h5>Nachname</h5>
               <div class="form-group">
-                <input type="text" name="lastname" id="email" tabindex="2" class="form-control" placeholder="Nachname" value="">
+                <input type="text" name="lastname" id="email" tabindex="2" class="form-control" placeholder="Nachname" value="" required>
               </div>
 
               <h5>Passwort</h5>
               <div class="form-group">
-                <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Passwort">
+                <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Passwort" required>
               </div>
 
               <h5>Passwort bestätigen</h5>
               <div class="form-group">
-                <input type="password" name="confirm-password" id="confirm-password" tabindex="4" class="form-control" placeholder="Passwort bestätigen">
+                <input type="password" name="confirm-password" id="confirm-password" tabindex="4" class="form-control" placeholder="Passwort bestätigen" required>
               </div>
 
               <div class="form-group">
                 <div class="row">
                   <div class="col-sm-6 col-sm-offset-3">
-                    <input type="submit" name="register-submit" id="register-submit" tabindex="5" class="form-control btn btn-register" value="Registrieren">
+                    <input type="submit" name="register-submit" id="register-submit" tabindex="5" class="form-control btn btn-register" value="Registrieren" required>
                   </div>
                 </div>
               </div>
 
             </form>
             <!-- /register form -->
+            <?php
+              // Gibt es einen Erfolg zu vermelden?
+              if($success == true){
+            ?>
+                <div class="alert alert-success" role="alert"><?php echo $success_msg; ?></div>
+            <?php
+              }   // schliessen von if($success == true)
+              // Gibt es einen Fehler?
+              if($error == true){
+            ?>
+                <div class="alert alert-danger" role="alert"><?php echo $error_msg; ?></div>
+            <?php
+              }   // schliessen von if($success == true)
+            ?>
           </div>
         </div>
       </div>
@@ -235,38 +259,6 @@
         <!-- /.row -->
 
         <hr>
-
-        <!-- Pagination -->
-        <!-- <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div> -->
-        <!-- /.row -->
-
-        <!-- <hr> -->
 
         <!-- Footer -->
         <footer>
