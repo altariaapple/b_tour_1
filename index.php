@@ -48,7 +48,7 @@
                         <a href="#">Finde Locations</a>
                     </li>
                     <li>
-                        <a href="#">Login</a>
+                        <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
                     </li>
                     <li>
                         <a href="#">Registrieren</a>
@@ -59,6 +59,51 @@
         </div>
         <!-- /.container -->
     </nav>
+
+    <!-- modal window for login / register -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="row">
+  						<div class="col-xs-6">
+  						  <a href="#" class="active" id="login-form-link">Login</a>
+  						</div>
+  						<div class="col-xs-6">
+  							<a href="#" id="register-form-link">anmelden</a>
+  						</div>
+  					</div>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <div class="modal-body">
+            <h4 class="modal-title">Login</h4>
+            <form id="login-form" action="index.php" method="post" role="form" style="display: block;">
+    					<div class="form-group">
+                <h5>Benutzername</h5>
+    						<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="E-Mail-Adresse" value="">
+    					</div>
+    					<div class="form-group">
+                <h5>Passwort</h5>
+    						<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Passwort">
+    					</div>
+              <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="login">
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <!-- Page Content -->
     <div class="container">
