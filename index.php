@@ -8,40 +8,6 @@
   $success = false;
   $success_msg = "";
 
-
-  if(isset($_POST['register-submit'])){
-  // Kontrolle mit isset, ob email und password ausgefüllt wurde
-  if(!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['confirm-password'])){
-
-    // Werte aus POST-Array auf SQL-Injections prüfen und in Variablen schreiben
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm-password'];
-    if($password == $confirm_password){
-      // register liefert bei erfolgreichem Eintrag in die DB den Wert TRUE zurück, andernfalls FALSE
-      $result = register($username, $email, $firstname, $lastname, $password);
-      if($result){
-        $success = true;
-        $success_msg = "Sie haben erfolgreich registriert.</br>
-        Sie können sich nun einloggen.</br>";
-      }else{
-        $error = true;
-        $error_msg .= "Es gibt ein Problem mit der Datenbankverbindung.</br>";
-      }
-    }else{
-      $error = true;
-      $error_msg .= "Die Passwörter stimmen nicht überein.</br>";
-    }
-  }
-
-  // else{
-  //   $error = true;
-  //   $error_msg .= "Bitte füllen Sie alle Felder aus.</br>";
-  // }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,13 +56,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="">Finde Locations</a>
+                        <a href="index.php">Finde Locations</a>
                     </li>
                     <li>
-                        <a href="" id="login-link" data-toggle="modal" data-target="#loginModal">Login</a>
-                    </li>
-                    <li>
-                        <a href="" id="register-link" data-toggle="modal" data-target="#registerModal">Registrieren</a>
+                        <a href="login.php">Login</a>
                     </li>
                 </ul>
             </div>
