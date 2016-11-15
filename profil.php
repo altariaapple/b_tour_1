@@ -119,7 +119,8 @@
                     <input type="text" class="form-control" id="pwd">
                   </div>
                   <div class="form-group">
-                    <label><input type="text">Vorname</label>
+                    <label for="pwd">Vorname</label>
+                    <input type="text" class="form-control" id="pwd">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
@@ -133,7 +134,6 @@
                     <label for="pwd">Password bestätigen</label>
                     <input type="password" class="form-control" id="pwd">
                   </div>
-
 
                   <button type="submit" class="btn btn-default">Submit</button>
                 </form>

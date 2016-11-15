@@ -15,7 +15,7 @@ $(document).ready(function() {
         	$(".anreiseText").text("Auto: Bernstrasse entlang bis Seelandgymnasium Biel. Dort rechts einbiegen zu den angeschriebenen Parkplätzen. Von den Parkplätzen aus ca. 3 Minuten Gehweg der Ländtestrasse entlang bis zum Seeufer.");
         }
         else if (pickedOption == "oeV") {
-        	$(".anreiseText").text("ÖV: Bei Bahnhof Biel Bus Nummer 2 Richtung Schiffländte nehmen, bis Station Schiffländte. Anschiessend ca. 2 Minuten der Ländtestrasse entlang bis zum Seeufer.");
+        	$(".anreiseText").text("ÖV: g Schiffländte nehmen, bis Station Schiffländte. Anschiessend ca. 2 Minuten der Ländtestrasse entlang bis zum Seeufer.");
         }
     });
 });
