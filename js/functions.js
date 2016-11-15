@@ -9,7 +9,6 @@ $(document).ready(function() {
           $("section#meinefotos").hide();
           $("section#favoriten").hide();
           $("section#follower").hide();
-
 });
 
 $(document).ready(function() {

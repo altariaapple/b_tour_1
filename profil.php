@@ -100,15 +100,14 @@
 <!--Section Profilbild-->
  <section id="profilfoto">
         <!-- Profilfoto -->
+        <h2>Das ist dein Profilfoto</h2>
+
         <div class="row">
             <div class="col-md-12 col-lg-12 portfolio-item">
               <div class="col-md-4 col-sm-4">
                 <a href="#">
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
                 </a>
-                <h3>
-                    <a href="#">Das ist dein Profilfoto</a>
-                </h3>
                 <p>"Was für ein schöner Tag in New York City"</p>
               </div>
               <div class="col-md-8 col-sm-8">
@@ -243,9 +242,8 @@
             </div>
           </div>
           <!-- /Freund+ Button -->
-          <input type="submit" class="btn btn-default" value="zu meinen Freunden hinzufügen" />
+          <input type="submit" class="btn btn-default" value="Diese Freunde löschen" />
          </form>
-
 
        <!--Ende Section Follower-->
  </section>
