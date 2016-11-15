@@ -25,7 +25,7 @@
       $result = register($username, $email, $firstname, $lastname, $password);
       if($result){
         $success = true;
-        $success_msg = "Sie haben erfolgreich registriert.</br>
+        $success_msg = "Ihre Registrierung war erfolgreich.</br>
         Sie können sich nun einloggen.</br>";
       }else{
         $error = true;
@@ -36,11 +36,6 @@
       $error_msg .= "Die Passwörter stimmen nicht überein.</br>";
     }
   }
-
-  // else{
-  //   $error = true;
-  //   $error_msg .= "Bitte füllen Sie alle Felder aus.</br>";
-  // }
 }
 ?>
 <!DOCTYPE html>
