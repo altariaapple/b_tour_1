@@ -40,20 +40,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">Photoloc</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="home.php">Finde Locations</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="profil.php">Mein Profil</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="">Logut</a>
                     </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
