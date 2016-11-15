@@ -1,12 +1,40 @@
 <?php
+  session_start();
+  if(isset($_SESSION['id'])) unset($_SESSION['id']);
+  session_destroy();
 
   require_once("system/data.php");
-
 
   $error = false;
   $error_msg = "";
   $success = false;
   $success_msg = "";
+
+  if(isset($_POST['login-submit'])){
+    if(!empty($_POST['username']) && !empty($_POST['password'])){
+
+      $username = filter_inputs($_POST['username']);
+      $password = filter_inputs($_POST['password']);
+
+      $result = login($username, $password);
+
+  		$row_count = mysqli_num_rows($result);
+      if( $row_count == 1){
+        session_start();
+        $user = mysqli_fetch_assoc($result);
+        $_SESSION['userid'] = $user['user_id'];
+        header("Location:home.php");
+      }
+      else{
+        $error = true;
+        $error_msg .= "Benutzerdaten konnten nicht gefunden werden.</br>";
+      }
+    }
+    else{
+      $error = true;
+      $error_msg .= "Bitte füllen Sie beide Felder aus.</br>";
+    }
+  }
 
 
   if(isset($_POST['register-submit'])){
@@ -68,7 +96,7 @@
 
 <body>
 
-    <!-- Navigation -->
+  <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -94,10 +122,10 @@
             </div>
             <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
+      <!-- /.container -->
     </nav>
 
-    <!-- Page Content -->
+  <!-- Page Content -->
     <div class="container">
 
         <!-- Page Header -->
@@ -117,7 +145,7 @@
                 <div class="form-group">
                 <div class="row">
                   <div class="col-sm-6 col-sm-offset-3">
-                    <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-register" value="login">
+                    <input type="submit" name="login-submit" id="login-submit" tabindex="3" class="form-control btn btn-register" value="login">
                   </div>
                 </div>
               </div>
@@ -131,38 +159,38 @@
               <form id="register-form" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" method="post" role="form">
                 <h5>Benutzername</h5>
                 <div class="form-group">
-                  <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Benutzername" value="" required>
+                  <input type="text" name="username" id="username" tabindex="4" class="form-control" placeholder="Benutzername" value="" required>
                 </div>
 
                 <h5>E-Mail</h5>
                 <div class="form-group">
-                  <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="E-Mail-Adresse" value="" required>
+                  <input type="email" name="email" id="email" tabindex="5" class="form-control" placeholder="E-Mail-Adresse" value="" required>
                 </div>
 
                 <h5>Vorname</h5>
                 <div class="form-group">
-                  <input type="text" name="firstname" id="email" tabindex="2" class="form-control" placeholder="Vorname" value="" required>
+                  <input type="text" name="firstname" id="email" tabindex="6" class="form-control" placeholder="Vorname" value="" required>
                 </div>
 
                 <h5>Nachname</h5>
                 <div class="form-group">
-                  <input type="text" name="lastname" id="email" tabindex="2" class="form-control" placeholder="Nachname" value="" required>
+                  <input type="text" name="lastname" id="email" tabindex="7" class="form-control" placeholder="Nachname" value="" required>
                 </div>
 
                 <h5>Passwort</h5>
                 <div class="form-group">
-                  <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Passwort" required>
+                  <input type="password" name="password" id="password" tabindex="8" class="form-control" placeholder="Passwort" required>
                 </div>
 
                 <h5>Passwort bestätigen</h5>
                 <div class="form-group">
-                  <input type="password" name="confirm-password" id="confirm-password" tabindex="4" class="form-control" placeholder="Passwort bestätigen" required>
+                  <input type="password" name="confirm-password" id="confirm-password" tabindex="9" class="form-control" placeholder="Passwort bestätigen" required>
                 </div>
 
                 <div class="form-group">
                   <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                      <input type="submit" name="register-submit" id="register-submit" tabindex="5" class="form-control btn btn-register" value="Registrieren" required>
+                      <input type="submit" name="register-submit" id="register-submit" tabindex="10" class="form-control btn btn-register" value="Registrieren" required>
                     </div>
                   </div>
                 </div>
