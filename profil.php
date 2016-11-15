@@ -79,75 +79,175 @@
                <!-- boostrap component Button group: drei Buttons nebeineinander -->
                <div class="btn-group btn-group-justified" role="group" aria-label="...">
                  <div class="btn-group" role="group">
-                   <button type="button" class="btn btn-default" id="fuss" value="fuss">Profilfoto</button>
+                   <button type="button" class="btn btn-default" id="profilfoto" value="profilfoto">Profilfoto</button>
                  </div>
                  <div class="btn-group" role="group">
-                   <button type="button" class="btn btn-default" id="auto" value="auto">Meine Fotos</button>
+                   <button type="button" class="btn btn-default" id="meinefotos" value="meinefotos">Meine Fotos</button>
                  </div>
                  <div class="btn-group" role="group">
-                   <button type="button" class="btn btn-default" id="oeV" value="oeV">Favoriten</button>
+                   <button type="button" class="btn btn-default" id="favoriten" value="favoriten">Favoriten</button>
                  </div>
                  <div class="btn-group" role="group">
-                   <button type="button" class="btn btn-default" id="fuss" value="fuss">Follower</button>
+                   <button type="button" class="btn btn-default" id="follower" value="follower">Follower</button>
                  </div>
                </div>
                <!-- Platzhalter für Inhalte, wird durch JS mit Inhalt gefüllt. Je nach geklicktem Button -->
             <div class="col-md-12 col">
-              <p class="anreiseText"></p>
+              <p class="layoutonclick"></p>
             </div>
        <!-- Ende Subnav -->
 
 <!--Section Profilbild-->
- <section>
-        <!-- Projects Row -->
+ <section id="profilfoto">
+        <!-- Profilfoto -->
+        <h2>Das ist dein Profilfoto</h2>
+
         <div class="row">
             <div class="col-md-12 col-lg-12 portfolio-item">
               <div class="col-md-4 col-sm-4">
                 <a href="#">
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
                 </a>
-                <h3>
-                    <a href="#">Das ist dein Profilfoto</a>
-                </h3>
                 <p>"Was für ein schöner Tag in New York City"</p>
               </div>
               <div class="col-md-8 col-sm-8">
                 <!--Start Formular -->
-                <form>
-                  <div class="form-group">
-                    <label for="pwd">Name</label>
-                    <input type="text" class="form-control" id="pwd">
-                  </div>
-                  <div class="form-group">
-                    <label for="pwd">Vorname</label>
-                    <input type="text" class="form-control" id="pwd">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email">
-                  </div>
-                  <div class="form-group">
-                    <label for="pwd">Password</label>
-                    <input type="password" class="form-control" id="pwd">
-                  </div>
-                  <div class="form-group">
-                    <label for="pwd">Password bestätigen</label>
-                    <input type="password" class="form-control" id="pwd">
-                  </div>
+                <form enctype="multipart/form-data" action="profil.php" method="post">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Persönliche Einstellungen</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label for="Gender" class="col-sm-2 form-control-label">Anrede</label>
+            <div class="col-sm-5">
+              <select class="form-control form-control-sm" id="Gender" name="gender">
+                <option value="">--</option>
+                <option value="Frau">Frau</option>
+                <option value="Herr">Herr</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
+            <div class="col-sm-5 col-xs-6">
+              <input  type="text" class="form-control form-control-sm"
+                      id="Vorname" placeholder="Vorname"
+                      name="firstname" value="">
+            </div>
+            <div class="col-sm-5 col-xs-6">
+              <input  type="text" class="form-control form-control-sm"
+                      id="Nachname" placeholder="Nachname"
+                      name="lastname" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
+            <div class="col-sm-10">
+              <input  type="email" class="form-control form-control-sm"
+                      id="Email" placeholder="E-Mail" required
+                      name="email" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Passwort" class="col-sm-2 form-control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control form-control-sm" id="Passwort" placeholder="Passwort" name="password">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Passwort_Conf" class="col-sm-2 form-control-label">Passwort bestätigen</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control form-control-sm" id="Passwort_Conf" placeholder="Passwort" name="confirm-password">
+            </div>
+          </div>
 
-                  <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+          <div class="form-group row">
+            <!-- http://plugins.krajee.com/file-input -->
+            <label for="Tel" class="col-sm-2 form-control-label">Profilbild</label>
+            <div class="col-sm-10">
+              <input type="file" name="profil_img">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
+          <button type="submit" class="btn btn-success btn-sm" name="update-submit">Änderungen speichern</button>
+        </div>
+      </form>
+
                 <!--Ende Formular -->
 
  </section>
-        <!-- Ende Section -->
 
+ <section id="meinefotos">
+<!--Start Section Meine Fotos-->
 
+  <h2>Hier sind deine Fotos </h2>
+      <!-- Fotos -->
+      <div class="row">
+          <div class="col-md-12 col-lg-12 portfolio-item">
+            <div class="col-md-4 col-sm-4">
+              <a href="#">
+                  <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+              </a>
+            </div>
+            <div class="col-md-8 col-sm-8">
+ </section>
+ <!--Ende Section Meine Fotos-->
 
+ <section id="favoriten">
+   <!--Start Section Favoriten-->
+    <h2>Das sind deine Favoriten</h2>
+    <!-- Fotos -->
+    <div class="row">
+        <div class="col-md-12 col-lg-12 portfolio-item">
+          <div class="col-md-4 col-sm-4">
+            <a href="#">
+                <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+            </a>
+                  </div>
+          <div class="col-md-8 col-sm-8">
+ </section>
+ <!--Ende Section Favoriten-->
 
+ <section id="follower">
+   <!--Start Section Follower-->
+    <h2>Das sind deine Freunde</h2>
+    <form method="post" action="friends.php" >
+          <!-- Freund+ Button -->
+          <div class="form-group row p42-form-group">
+            <input type="checkbox" name="new_friends[]" id="userid2" autocomplete="off" value="2"/>
+            <div class="btn-group col-xs-12">
+              <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span> </span>
+              </label>
+              <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
+                  Simonne Bosiers
+              </label>
+            </div>
+          </div>
+          <!-- /Freund+ Button -->
+          <!-- Freund+ Button -->
+          <div class="form-group row p42-form-group">
+            <input type="checkbox" name="new_friends[]" id="userid3" autocomplete="off" value="3"/>
+            <div class="btn-group col-xs-12">
+              <label for="userid3" class="btn btn-default  col-xs-2 col-sm-1">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span> </span>
+              </label>
+              <label for="userid3" class="btn btn-default active col-xs-10 col-sm-11">
+                  Rolf Hofstetter
+              </label>
+            </div>
+          </div>
+          <!-- /Freund+ Button -->
+          <input type="submit" class="btn btn-default" value="Diese Freunde löschen" />
+         </form>
 
-
-
+       <!--Ende Section Follower-->
+ </section>
+ <!--Ende Section Follower-->
 
 
         <!-- Footer -->
