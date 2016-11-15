@@ -179,6 +179,7 @@
         <!-- /.row -->
 
         <hr>
+        <p></p>
 
         <!-- Footer -->
         <footer>
