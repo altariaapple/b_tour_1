@@ -1,6 +1,9 @@
 <?php
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e23a423a45688e99e721bfc7cb8b4df1194f5612
  require_once("system/data.php");
 
 
@@ -42,7 +45,10 @@
  //   $error = true;
  //   $error_msg .= "Bitte füllen Sie alle Felder aus.</br>";
  // }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e23a423a45688e99e721bfc7cb8b4df1194f5612
   require_once("system/data.php");
 
 
@@ -84,14 +90,20 @@
   //   $error = true;
   //   $error_msg .= "Bitte füllen Sie alle Felder aus.</br>";
   // }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e23a423a45688e99e721bfc7cb8b4df1194f5612
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e23a423a45688e99e721bfc7cb8b4df1194f5612
 
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -109,7 +121,10 @@
     <meta name="author" content="">
 
     <title>Photoloc</title>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e23a423a45688e99e721bfc7cb8b4df1194f5612
 
    <!-- Bootstrap Core CSS -->
    <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -127,8 +142,11 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e23a423a45688e99e721bfc7cb8b4df1194f5612
    <!-- Navigation -->
    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
        <div class="container">
@@ -337,7 +355,10 @@
 
    <!-- functions.js -->
    <script src="js/functions.js"></script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e23a423a45688e99e721bfc7cb8b4df1194f5612
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -543,7 +564,10 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e23a423a45688e99e721bfc7cb8b4df1194f5612
 
     <!-- functions.js -->
     <script src="js/functions.js"></script>
