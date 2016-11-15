@@ -1,3 +1,38 @@
+<?php
+  $error = false;
+  $error_msg = "";
+  $success = false;
+  $success_msg = "";
+
+  if(isset($_POST['register-submit'])){
+  // Kontrolle mit isset, ob email und password ausgefüllt wurde
+  if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirm-password'])){
+
+    // Werte aus POST-Array auf SQL-Injections prüfen und in Variablen schreiben
+    $email = filter_data($_POST['email']);
+    $password = filter_data($_POST['password']);
+    $confirm_password = filter_data($_POST['confirm-password']);
+    if($password == $confirm_password){
+      // register liefert bei erfolgreichem Eintrag in die DB den Wert TRUE zurück, andernfalls FALSE
+      $result = register($email, $password);
+      if($result){
+        $success = true;
+        $success_msg = "Sie haben erfolgreich registriert.</br>
+        Sie können sich nun einloggen.</br>";
+      }else{
+        $error = true;
+        $error_msg .= "Es gibt ein Problem mit der Datenbankverbindung.</br>";
+      }
+    }else{
+      $error = true;
+      $error_msg .= "Die Passwörter stimmen nicht überein.</br>";
+    }
+  }else{
+    $error = true;
+    $error_msg .= "Bitte füllen Sie alle Felder aus.</br>";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,6 +125,20 @@
             </div>
             </form>
             <!-- /login form  -->
+            <?php
+              // Gibt es einen Erfolg zu vermelden?
+              if($success == true){
+            ?>
+                <div class="alert alert-success" role="alert"><?php echo $success_msg; ?></div>
+            <?php
+              }   // schliessen von if($success == true)
+              // Gibt es einen Fehler?
+              if($error == true){
+            ?>
+                <div class="alert alert-danger" role="alert"><?php echo $error_msg; ?></div>
+            <?php
+              }   // schliessen von if($success == true)
+            ?>
           </div>
         </div>
 
