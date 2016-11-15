@@ -6,6 +6,7 @@
   else{
     $user_id = $_SESSION['userid'];
   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +82,7 @@
         </div>
         <!-- /.row -->
 
-        <!-- Button trigger modal -->
+        <!-- Bild hochladen -->
         <div class="panel panel-default container-fluid"> <!-- fluid -->
           <div class="panel-heading row">
             <div class="col-sm-6">
@@ -98,7 +99,7 @@
           </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Shadowbox Bild hochladen -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
