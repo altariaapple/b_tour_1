@@ -98,20 +98,6 @@
             </div>
             </form>
             <!-- /login form  -->
-            <?php
-              // Gibt es einen Erfolg zu vermelden?
-              if($success == true){
-            ?>
-                <div class="alert alert-success" role="alert"><?php echo $success_msg; ?></div>
-            <?php
-              }   // schliessen von if($success == true)
-              // Gibt es einen Fehler?
-              if($error == true){
-            ?>
-                <div class="alert alert-danger" role="alert"><?php echo $error_msg; ?></div>
-            <?php
-              }   // schliessen von if($success == true)
-            ?>
           </div>
         </div>
 

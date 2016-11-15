@@ -110,10 +110,10 @@
             <div class="col-lg-6">
               <!--  login form -->
               <h3>Login</h3>
-              <form id="login-form" action="index.php" method="post" role="form">
+              <form id="login-form" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" method="post" role="form">
                 <div class="form-group">
                   <h5>Benutzername</h5>
-                  <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="E-Mail-Adresse" value="">
+                  <input type="text" name="username" id="email" tabindex="1" class="form-control" placeholder="Benutzername" value="">
                 </div>
                 <div class="form-group">
                   <h5>Passwort</h5>
@@ -133,7 +133,7 @@
             <div class="col-lg-6">
               <!-- register form -->
               <h3>Registration</h3>
-              <form id="register-form" action="index.php" method="post" role="form">
+              <form id="register-form" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" method="post" role="form">
                 <h5>Benutzername</h5>
                 <div class="form-group">
                   <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Benutzername" value="" required>
@@ -175,6 +175,20 @@
               </form>
               <!-- /register form -->
             </div>
+            <?php
+              // Gibt es einen Erfolg zu vermelden?
+              if($success == true){
+            ?>
+                <div class="alert alert-success" role="alert"><?php echo $success_msg; ?></div>
+            <?php
+              }   // schliessen von if($success == true)
+              // Gibt es einen Fehler?
+              if($error == true){
+            ?>
+                <div class="alert alert-danger" role="alert"><?php echo $error_msg; ?></div>
+            <?php
+              }   // schliessen von if($success == true)
+            ?>
         </div>
         <!-- /.row -->
 
