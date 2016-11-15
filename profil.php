@@ -66,7 +66,7 @@
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Dein Profil </br>
+                <h1 class="page-header">Dein Profil <br>
                     <small>Hier kannst du alles ändern </small>
                 </h1>
             </div>
@@ -100,7 +100,7 @@
 <!--Section Profilbild-->
  <section id="profilfoto">
         <!-- Profilfoto -->
-        <h2>Das ist dein Profilfoto</h2>
+        <h2>Du siehst super aus!</h2>
 
         <div class="row">
             <div class="col-md-12 col-lg-12 portfolio-item">
@@ -182,7 +182,7 @@
  <section id="meinefotos">
 <!--Start Section Meine Fotos-->
 
-  <h2>Hier sind deine Fotos </h2>
+  <h2>Deine Fotos</h2>
       <!-- Fotos -->
       <div class="row">
           <div class="col-md-12 col-lg-12 portfolio-item">
@@ -212,7 +212,7 @@
 
  <section id="follower">
    <!--Start Section Follower-->
-    <h2>Das sind deine Freunde</h2>
+    <h2>Deine Freunde</h2>
     <form method="post" action="friends.php" >
           <!-- Freund+ Button -->
           <div class="form-group row p42-form-group">
