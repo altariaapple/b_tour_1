@@ -24,11 +24,7 @@
  /* ----------------------- */
 
  function register($username, $email, $firstname, $lastname, $password){
-<<<<<<< HEAD
-   $sql = "INSERT INTO user";
-=======
    $sql = "INSERT INTO user (benutzer_name, email, first_name, last_name, password) VALUES ('$username', '$email', '$firstname', '$lastname', '$password');";
    return get_result($sql);
->>>>>>> d3d6e64f6f9ce2002509a5b6dacdf3854904916b
  }
 ?>
