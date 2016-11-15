@@ -2,6 +2,10 @@
 /* Tim Glatthard, Carmina Grünig, Joel Viotti */
 
 
+/* ---------- index.php ----------- */
+/* -------------------------------- */
+
+
 /* Button-group Anreise, jeweiligen Text anzeigen */
 $(document).ready(function() {
     $('button').click(function(event) {
