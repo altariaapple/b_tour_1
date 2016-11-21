@@ -6,6 +6,11 @@
   else{
     $user_id = $_SESSION['userid'];
   }
+  require_once("system/data.php");
+
+  $post_pictures = get_all_pictures();
+
+  $get_tags = get_tags();
 
   require_once('system/data.php');
 
@@ -222,33 +227,25 @@ if ($_FILES['post_img']['name'] != "") {
 
         <!-- Locations Row -->
         <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
+        <?php while($pictures = mysqli_fetch_assoc($post_pictures)) {
+            $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+            //die $pictureID wird als Parameter dem Bild-Link übergeben
+            $pictureID = $pictures['picture_id'];
+          ?>
+              <div class="col-md-4">
+                  <a href="location.php?<?php echo $pictureID; ?>">
+                      <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
+                  </a>
+                  <h3>
+                      <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
+                  </h3>
+                  <p><?php echo $pictures['description']; ?></p>
+                  <p>Tags</p>
+                  <p>von <?php echo $post_picture_owner['first_name']. " " .$post_picture_owner['last_name']; ?></p>
+              </div>
+
+        <?php }?>
         </div>
         <!-- /.row -->
 

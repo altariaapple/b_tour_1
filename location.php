@@ -25,6 +25,13 @@
   // angaben zum bild-owner holen und in einem array speichern
   $get_klicked_picture_owner = get_picture_owner($post_klicked_picture['uploader']);
   $post_klicked_picture_owner = mysqli_fetch_assoc($get_klicked_picture_owner);
+
+
+
+  //Like und Dislike Button
+  if(isset($_POST['like-submit'])){
+    $result = update_like();
+  }
  ?>
 
 <!DOCTYPE html>
@@ -137,8 +144,17 @@
         <!-- Projects Row -->
         <div class="row">
             <div class="col-md-12 portfolio-item">
-                    <img class="img-responsive" src="../img_uploads/<?php echo $post_klicked_picture['img_src']; ?>" alt="">
-                <p><?php echo $post_klicked_picture['timestamp']; ?></p>
+                <img class="img-responsive" src="../img_uploads/<?php echo $post_klicked_picture['img_src']; ?>" alt="">
+                <div class="row">
+                  <p class="col-lg-2"><?php echo $post_klicked_picture['timestamp']; ?></p>
+                  <!-- Like Button nur möglich wenn man eingeloggt ist -->
+                  <?php if(isset($_SESSION['userid'])){ ?>
+                    <button type="submit" name="like-submit" class="col-lg-1 col-lg-offset-3 likeButton"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+                    <p class="col-lg-1"><?php echo $post_klicked_picture['like_counter']; ?></p>
+                    <button type="submit" name="dislike-submit" class="col-lg-1 dislikeButton"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
+                  <?php } ?>
+                </div>
+
                 <p>geposten von <?php echo $post_klicked_picture_owner['first_name']. " " .$post_klicked_picture_owner['last_name']; ?></p>
                 <p><?php echo $post_klicked_picture['description']; ?></p>
             </div>

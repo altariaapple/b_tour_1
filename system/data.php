@@ -16,7 +16,7 @@
   function get_result($sql)
   {
     $db = get_db_connection();
-  //  echo $sql ."<br>";
+    //echo $sql ."<br>";
     $result = mysqli_query($db, $sql);
     mysqli_close($db);
     return $result;
@@ -71,28 +71,16 @@
  }
  /* ----------------------------------------------------------------------------- */
 
- /* ---- home.php ---- */
- /* ----------------------- */
- //Bildupload
-
- function bildupload($uploader, $like_counter, $description, $title, $img_src){
-   $sql = "INSERT INTO picture (uploader, like_counter, description, title, img_src) VALUES ('$uploader', '$like_counter', '$description', '$title', '$img_src');";
-  // echo '<script type="text/javascript">alert("' . $sql . '");</script>';
-    return get_result($sql);
- }
-
-
- function get_user($user_id){
-     $sql = "SELECT * FROM user WHERE user_id = $user_id;";
-     return get_result($sql);
- }
-
 
   /* ---- location.php ---- */
   /* ----------------------- */
   function get_certain_picture($picID){
     $sql = "SELECT * FROM picture WHERE picture_id = '$picID';";
     return get_result($sql);
+  }
+
+  function update_like($picID,$userID){
+    $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID')"
   }
   /* ----------------------------------------------------------------------------- */
 
@@ -105,11 +93,79 @@
 
   /* ----------------------------------------------------------------------------- */
 
+  
+  /* ---- home.php ---- */
+  /* ----------------------- */
+
+  //Bildupload
+  function bildupload($uploader, $like_counter, $description, $title, $img_src){
+    $sql = "INSERT INTO picture (uploader, like_counter, description, title, img_src) VALUES ('$uploader', '$like_counter', '$description', '$title', '$img_src');";
+   // echo '<script type="text/javascript">alert("' . $sql . '");</script>';
+     return get_result($sql);
+  }
+
+
+  function get_user($user_id){
+      $sql = "SELECT * FROM user WHERE user_id = $user_id;";
+      return get_result($sql);
+  }
+
   /* ---- profil.php ---- */
   /* ----------------------- */
+<<<<<<< HEAD
     //alle anzeigen
 
 //Freunde hinzufügen
+
+=======
+
+  function update_user($firstname, $lastname, $email, $password, $user_id)
+  {
+    $sql_ok = false;
+    $sql = "UPDATE user SET ";
+  //   if($profilfoto != ""){ //wenn profilfoto nicht leer dann:
+  //     $sql .= "profilfoto = '$profilfoto', ";  //vorhandener string wird erweitert
+  //     $sql_ok = true;
+  // }
+
+    if($firstname != ""){ //wenn profilfoto nicht leer dann:
+      $sql .= "first_name = '$firstname', ";  //vorhandener string wird erweitert
+      $sql_ok = true;
+    }
+
+    if($lastname != ""){ //wenn profilfoto nicht leer dann:
+      $sql .= "last_name = '$lastname', ";  //vorhandener string wird erweitert
+      $sql_ok = true;
+  }
+
+    if($email != ""){ //wenn profilfoto nicht leer dann:
+      $sql .= "email = '$email', ";  //vorhandener string wird erweitert
+      $sql_ok = true;
+  }
+
+    if($password != "" && $confirm_password == $password){ //wenn profilfoto nicht leer dann:
+      $sql .= "password = '$password', ";  //vorhandener string wird erweitert
+      $sql_ok = true;
+    }
+    $sql = substr_replace($sql, ' ', -2, 1);
+
+    $sql .= "WHERE user_id = $user_id;";
+
+  if($sql_ok)
+  {
+    return get_result($sql);
+
+  } else{
+    return false;
+    }
+  }
+  function get_no_friend_list($user_id){
+  $sql = "SELECT * FROM user WHERE user_id NOT in
+    (SELECT friend FROM userrelations WHERE user = $user_id)
+    AND  NOT user_id = $user_id;";
+  return get_result($sql);
+}
+>>>>>>> 04381f92fa956c36063f77755fd927839a49d22c
 
 
   ?>
