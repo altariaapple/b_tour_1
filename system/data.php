@@ -155,5 +155,9 @@ if($sql_ok)
     AND  NOT user_id = $user_id;";
   return get_result($sql);
 }
+/* ---- profil.php ---- */
+/* ----------------------- */
+
+
 
   ?>
