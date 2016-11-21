@@ -137,8 +137,17 @@
         <!-- Projects Row -->
         <div class="row">
             <div class="col-md-12 portfolio-item">
-                    <img class="img-responsive" src="../img_uploads/<?php echo $post_klicked_picture['img_src']; ?>" alt="">
-                <p><?php echo $post_klicked_picture['timestamp']; ?></p>
+                <img class="img-responsive" src="../img_uploads/<?php echo $post_klicked_picture['img_src']; ?>" alt="">
+                <div class="row">
+                  <p class="col-lg-2"><?php echo $post_klicked_picture['timestamp']; ?></p>
+                  <!-- Like Button nur möglich wenn man eingeloggt ist -->
+                  <?php if(isset($_SESSION['userid'])){ ?>
+                    <button type="submit" name="like-submit" class="col-lg-1 col-lg-offset-3 likeButton"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+                    <p class="col-lg-1"><?php echo $post_klicked_picture['like_counter']; ?></p>
+                    <button type="submit" name="dislike-submit" class="col-lg-1 dislikeButton"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
+                  <?php } ?>
+                </div>
+
                 <p>geposten von <?php echo $post_klicked_picture_owner['first_name']. " " .$post_klicked_picture_owner['last_name']; ?></p>
                 <p><?php echo $post_klicked_picture['description']; ?></p>
             </div>
