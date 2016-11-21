@@ -16,7 +16,7 @@
   function get_result($sql)
   {
     $db = get_db_connection();
-    //echo $sql ."<br>";
+  //  echo $sql ."<br>";
     $result = mysqli_query($db, $sql);
     mysqli_close($db);
     return $result;
@@ -71,6 +71,22 @@
  }
  /* ----------------------------------------------------------------------------- */
 
+ /* ---- home.php ---- */
+ /* ----------------------- */
+ //Bildupload
+
+ function bildupload($uploader, $like_counter, $description, $title, $img_src){
+   $sql = "INSERT INTO picture (uploader, like_counter, description, title, img_src) VALUES ('$uploader', '$like_counter', '$description', '$title', '$img_src');";
+  // echo '<script type="text/javascript">alert("' . $sql . '");</script>';
+    return get_result($sql);
+ }
+
+
+ function get_user($user_id){
+     $sql = "SELECT * FROM user WHERE user_id = $user_id;";
+     return get_result($sql);
+ }
+
 
   /* ---- location.php ---- */
   /* ----------------------- */
@@ -88,5 +104,14 @@
   }
 
   /* ----------------------------------------------------------------------------- */
+
+  /* ---- profil.php ---- */
+  /* ----------------------- */
+  function get_no_friend_list($user_id){
+  $sql = "SELECT * FROM user WHERE user_id NOT in
+    (SELECT friend FROM userrelations WHERE user = $user_id)
+    AND  NOT user_id = $user_id;";
+  return get_result($sql);
+}
 
   ?>
