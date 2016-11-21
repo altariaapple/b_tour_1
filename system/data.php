@@ -107,11 +107,9 @@
 
   /* ---- profil.php ---- */
   /* ----------------------- */
-  function get_no_friend_list($user_id){
-  $sql = "SELECT * FROM user WHERE user_id NOT in
-    (SELECT friend FROM userrelations WHERE user = $user_id)
-    AND  NOT user_id = $user_id;";
-  return get_result($sql);
-}
+    //alle anzeigen
+
+//Freunde hinzufügen
+
 
   ?>
