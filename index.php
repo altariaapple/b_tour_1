@@ -1,7 +1,7 @@
 <?php
 
   session_start();
-  if(isset($_SESSION['id'])) unset($_SESSION['id']);
+  if(isset($_SESSION['userid'])) unset($_SESSION['userid']);
   session_destroy();
 
   require_once('system/data.php');
@@ -12,8 +12,9 @@
   $success = false;
   $success_msg = "";
 
-  $post_pictures = get_pictures();
+  $post_pictures = get_all_pictures();
 
+  $get_tags = get_tags();
 ?>
 
 <!DOCTYPE html>
@@ -27,13 +28,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Photoloc!</title>
+    <title>Photoloca</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
     <!-- Custom CSS -->
     <link href="css/3-col-portfolio.css" rel="stylesheet">
+
+    <!-- Bootstrap Toggle -->
+    <link href="css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="js/bootstrap-toggle.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,6 +82,29 @@
         <!-- /.container -->
     </nav>
 
+    <!--  Suchfeld Content -->
+    <div class="container suchfeld">
+      <div class="row">
+        <h4>Suche nach diesen Tags</h4>
+        <?php
+          $tagcounter = 0;
+          while($post_tags = mysqli_fetch_assoc($get_tags)){?>
+          <div class="col-lg-2 tagToggle">
+            <input type="checkbox" unchecked data-toggle="toggle" data-on="<?php echo $post_tags['tag_name'];?>" data-off="<?php echo $post_tags['tag_name'];?>" data-onstyle="success">
+          </div>
+          <?php
+          $tagcounter ++;
+          if ($tagcounter == 6){ ?>
+          </div>
+          <div class="row">
+          <?php
+              } //if beenden
+            } //while beenden
+          ?>
+        </div>
+    </div>
+    <!-- /suchfeld -->
+
     <!-- Page Content -->
     <div class="container">
 
@@ -91,13 +121,16 @@
       <div class="row">
       <?php while($pictures = mysqli_fetch_assoc($post_pictures)) {
           $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+          //die $pictureID wird als Parameter dem Bild-Link übergeben
+          $pictureID = $pictures['picture_id'];
         ?>
             <div class="col-md-4">
-                <a href="#">
+                <a href="location.php?<?php echo $pictureID; ?>">
                     <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
                 </a>
                 <h3>
-                    <a href="#"><?php echo $pictures['title']; ?></a>
+                    <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
                 </h3>
                 <p><?php echo $pictures['description']; ?></p>
                 <p>Tags</p>
@@ -122,9 +155,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

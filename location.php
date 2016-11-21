@@ -1,3 +1,32 @@
+<?php
+  session_start();
+  if(isset($_SESSION['userid'])){
+    $user_id = $_SESSION['userid'];
+  }
+  else{
+    unset($_SESSION['userid']);
+    session_destroy();
+  }
+
+  require_once("system/data.php");
+
+
+
+  // aktuelle URL bekommen, damit parameter am schluss geholt werden kann
+  $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+  //die aktuelle URL wird in ihre einzelnen teile geparst; der teil 'query' gibt den teil aus welcher nach dem ? kommt
+  $url_array = parse_url($current_url);
+
+  //bild mit der ID die gleich dem url-parameter ist wird geholt
+  $get_klicked_picture = get_certain_picture($url_array['query']);
+  //die einträge aus der DB zum gewählten bild werden in einem array gespeichert
+  $post_klicked_picture = mysqli_fetch_assoc($get_klicked_picture);
+
+  // angaben zum bild-owner holen und in einem array speichern
+  $get_klicked_picture_owner = get_picture_owner($post_klicked_picture['uploader']);
+  $post_klicked_picture_owner = mysqli_fetch_assoc($get_klicked_picture_owner);
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +37,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>3 Col Portfolio - Start Bootstrap Template</title>
+    <title>Photoloca</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +57,42 @@
 
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigation wenn man eingeloggt ist-->
+    <?php if(isset($_SESSION['userid'])){?>
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="home.php">photoloc</a>
+              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                      <li>
+                          <a href="home.php">Finde Locations</a>
+                      </li>
+                      <li>
+                          <a href="profil.php">Mein Profil</a>
+                      </li>
+                      <li>
+                          <a href="index.php">Logout</a>
+                      </li>
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+    <?php } ?>
+
+    <!-- Navigation wenn man NICHT eingeloggt ist-->
+  <?php if(!isset($_SESSION['userid'])){?>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,19 +103,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.php">Photoloca</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="index.php">Finde Locations</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
+                        <a href="login.php">Login / Registration</a>
                     </li>
                 </ul>
             </div>
@@ -59,6 +120,7 @@
         </div>
         <!-- /.container -->
     </nav>
+    <?php } ?>
 
     <!-- Page Content -->
     <div class="container">
@@ -66,9 +128,7 @@
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Titel des Bildes
-                  <br>
-                    <small>Beschreibung usw</small>
+                <h1 class="page-header"><?php echo $post_klicked_picture['title']; ?>
                 </h1>
             </div>
         </div>
@@ -77,13 +137,10 @@
         <!-- Projects Row -->
         <div class="row">
             <div class="col-md-12 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://bilder.4ever.eu/data/download/natur/wiese,-himmel-157816.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="#">Titel</a>
-                </h3>
-                <p>Beschreibung.</p>
+                    <img class="img-responsive" src="../img_uploads/<?php echo $post_klicked_picture['img_src']; ?>" alt="">
+                <p><?php echo $post_klicked_picture['timestamp']; ?></p>
+                <p>geposten von <?php echo $post_klicked_picture_owner['first_name']. " " .$post_klicked_picture_owner['last_name']; ?></p>
+                <p><?php echo $post_klicked_picture['description']; ?></p>
             </div>
 
 

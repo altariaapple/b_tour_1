@@ -63,7 +63,7 @@ if ($_FILES['post_img']['name'] != "") {
 
 
 
-     $result = bildupload($uploader, $like_counter, $description, $title, $img_src);
+     $result = bildupload($uploader, $like_counter, $description, $title, $image_name);
    }
 ?>
 

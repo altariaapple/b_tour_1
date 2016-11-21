@@ -45,7 +45,7 @@
  /* ---- index.php ---- */
  /* ----------------------- */
 
- function get_pictures(){
+ function get_all_pictures(){
    $sql = "SELECT * FROM picture";
    return get_result($sql);
  }
@@ -55,6 +55,10 @@
    return get_result($sql);
  }
  /* ----------------------------------------------------------------------------- */
+
+
+ /* ---- login.php ---- */
+ /* ----------------------- */
 
  function register($username, $email, $firstname, $lastname, $password){
    $sql = "INSERT INTO user (benutzer_name, email, first_name, last_name, password) VALUES ('$username', '$email', '$firstname', '$lastname', '$password');";
@@ -83,4 +87,31 @@
      return get_result($sql);
  }
 
-?>
+
+  /* ---- location.php ---- */
+  /* ----------------------- */
+  function get_certain_picture($picID){
+    $sql = "SELECT * FROM picture WHERE picture_id = '$picID';";
+    return get_result($sql);
+  }
+  /* ----------------------------------------------------------------------------- */
+
+  /* ---- allgemein ---- */
+  /* ----------------------- */
+  function get_tags(){
+    $sql = "SELECT * FROM tags;";
+    return get_result($sql);
+  }
+
+  /* ----------------------------------------------------------------------------- */
+
+  /* ---- profil.php ---- */
+  /* ----------------------- */
+  function get_no_friend_list($user_id){
+  $sql = "SELECT * FROM user WHERE user_id NOT in
+    (SELECT friend FROM userrelations WHERE user = $user_id)
+    AND  NOT user_id = $user_id;";
+  return get_result($sql);
+}
+
+  ?>
