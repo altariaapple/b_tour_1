@@ -80,7 +80,7 @@
   }
 
   function update_like($picID,$userID){
-    $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID')"
+    $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID');";
   }
   /* ----------------------------------------------------------------------------- */
 
@@ -93,7 +93,7 @@
 
   /* ----------------------------------------------------------------------------- */
 
-  
+
   /* ---- home.php ---- */
   /* ----------------------- */
 
