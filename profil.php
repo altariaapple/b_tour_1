@@ -12,6 +12,19 @@
 
   $no_friend_list = get_no_friend_list($user_id);
 
+  require_once('system/data.php');
+
+  if(isset($_POST['update-submit']))
+  {
+    // $profilfoto = filter_inputs($_POST['profil_img']);
+    $firstname = filter_inputs($_POST['firstname']);
+    $lastname = filter_inputs($_POST['lastname']);
+    $email = filter_inputs($_POST['email']);
+    $password = filter_inputs($_POST['password']);
+
+    $result = update_user($firstname, $lastname, $email, $password, $user_id);
+  }
+
 ?>
 
 <!DOCTYPE html>
