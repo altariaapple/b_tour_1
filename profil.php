@@ -12,11 +12,6 @@
   $result = get_user($user_id);
   $user = mysqli_fetch_assoc($result);
 
-
-  $no_friend_list = get_no_friend_list($user_id);
-
-  require_once('system/data.php');
-
   if(isset($_POST['update-submit']))
   {
     // $profilfoto = filter_inputs($_POST['profil_img']);
@@ -305,26 +300,13 @@
                  </div>
                </div>
 
-               <h2>Diesen Leuten könntest du auch folgen</h2>
-               <form method="post" action="friends.php" >
-                     <!-- Freund+ Button -->
-                     <div class="form-group row p42-form-group">
-                       <input type="checkbox" name="new_friends[]" id="userid2" autocomplete="off" value="2"/>
-                       <div class="btn-group col-xs-6">
-                         <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
-                           <span class="glyphicon glyphicon-plus"></span>
-                           <span> </span>
-                         </label>
-                         <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
-                             Simonne Bosiers
-                         </label>
-                       </div>
-                     </div>
-                     <!-- /Freund+ Button -->
+               <div class="container">
+                 <input type="submit" class="btn btn-default" value="zu meinen Freunden hinzufügen" name="new_friends" />
+                </form>
+              </div>
 
        <!--Ende Section Follower-->
- </section>
- <!--Ende Section Follower-->
+     </section>
 
 
         <!-- Footer -->

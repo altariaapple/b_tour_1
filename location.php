@@ -25,6 +25,13 @@
   // angaben zum bild-owner holen und in einem array speichern
   $get_klicked_picture_owner = get_picture_owner($post_klicked_picture['uploader']);
   $post_klicked_picture_owner = mysqli_fetch_assoc($get_klicked_picture_owner);
+
+
+
+  //Like und Dislike Button
+  if(isset($_POST['like-submit'])){
+    $result = update_like();
+  }
  ?>
 
 <!DOCTYPE html>
