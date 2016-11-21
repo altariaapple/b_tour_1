@@ -80,7 +80,7 @@
   }
 
   function update_like($picID,$userID){
-    $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID')"
+    $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID');";
   }
   /* ----------------------------------------------------------------------------- */
 
@@ -93,7 +93,7 @@
 
   /* ----------------------------------------------------------------------------- */
 
-  
+
   /* ---- home.php ---- */
   /* ----------------------- */
 
@@ -112,12 +112,10 @@
 
   /* ---- profil.php ---- */
   /* ----------------------- */
-<<<<<<< HEAD
     //alle anzeigen
 
 //Freunde hinzufügen
 
-=======
 
   function update_user($firstname, $lastname, $email, $password, $user_id)
   {
@@ -165,7 +163,6 @@
     AND  NOT user_id = $user_id;";
   return get_result($sql);
 }
->>>>>>> 04381f92fa956c36063f77755fd927839a49d22c
 
 
   ?>
