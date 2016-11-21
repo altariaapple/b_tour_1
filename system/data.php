@@ -112,6 +112,12 @@
 
   /* ---- profil.php ---- */
   /* ----------------------- */
+<<<<<<< HEAD
+    //alle anzeigen
+
+//Freunde hinzufügen
+
+=======
 
   function update_user($firstname, $lastname, $email, $password, $user_id)
   {
@@ -159,6 +165,7 @@
     AND  NOT user_id = $user_id;";
   return get_result($sql);
 }
+>>>>>>> 04381f92fa956c36063f77755fd927839a49d22c
 
 
   ?>
