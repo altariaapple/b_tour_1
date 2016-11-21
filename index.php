@@ -35,6 +35,10 @@
     <!-- Custom CSS -->
     <link href="css/3-col-portfolio.css" rel="stylesheet">
 
+    <!-- Bootstrap Toggle -->
+    <link href="css/bootstrap2-toggle.min.css" rel="stylesheet">
+    <script src="js/bootstrap2-toggle.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -74,6 +78,17 @@
         </div>
         <!-- /.container -->
     </nav>
+
+    <!--  Suchfeld Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          hier kommt die suche
+          <input type="checkbox" checked data-toggle="toggle">
+        </div>
+      </div>
+    </div>
+    <!-- /suchfeld -->
 
     <!-- Page Content -->
     <div class="container">
