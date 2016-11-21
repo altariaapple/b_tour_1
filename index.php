@@ -14,6 +14,7 @@
 
   $post_pictures = get_all_pictures();
 
+  $get_tags = get_tags();
 ?>
 
 <!DOCTYPE html>
@@ -31,13 +32,15 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
     <!-- Custom CSS -->
     <link href="css/3-col-portfolio.css" rel="stylesheet">
 
     <!-- Bootstrap Toggle -->
-    <link href="css/bootstrap2-toggle.min.css" rel="stylesheet">
-    <script src="js/bootstrap2-toggle.min.js"></script>
+    <link href="css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="js/bootstrap-toggle.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -80,13 +83,25 @@
     </nav>
 
     <!--  Suchfeld Content -->
-    <div class="container">
+    <div class="container suchfeld">
       <div class="row">
-        <div class="col-lg-12">
-          hier kommt die suche
-          <input type="checkbox" checked data-toggle="toggle">
+        <h4>Suche nach diesen Tags</h4>
+        <?php
+          $tagcounter = 0;
+          while($post_tags = mysqli_fetch_assoc($get_tags)){?>
+          <div class="col-lg-2 tagToggle">
+            <input type="checkbox" unchecked data-toggle="toggle" data-on="<?php echo $post_tags['tag_name'];?>" data-off="<?php echo $post_tags['tag_name'];?>" data-onstyle="success">
+          </div>
+          <?php
+          $tagcounter ++;
+          if ($tagcounter == 6){ ?>
+          </div>
+          <div class="row">
+          <?php
+              } //if beenden
+            } //while beenden
+          ?>
         </div>
-      </div>
     </div>
     <!-- /suchfeld -->
 
@@ -140,9 +155,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

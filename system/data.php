@@ -78,7 +78,15 @@
     $sql = "SELECT * FROM picture WHERE picture_id = '$picID';";
     return get_result($sql);
   }
+  /* ----------------------------------------------------------------------------- */
 
+  /* ---- allgemein ---- */
+  /* ----------------------- */
+  function get_tags(){
+    $sql = "SELECT * FROM tags;";
+    return get_result($sql);
+  }
 
+  /* ----------------------------------------------------------------------------- */
 
   ?>
