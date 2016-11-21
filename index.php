@@ -70,7 +70,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.php">Finde Locations</a>
+                        <a href="#" id="suchfeldLink">Finde Locations</a>
                     </li>
                     <li>
                         <a href="login.php">Login / Registration</a>

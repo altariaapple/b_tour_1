@@ -3,7 +3,18 @@
 
 /* ---------- index.php ----------- */
 /* -------------------------------- */
-
+// Suchfeld ein und ausblenden
+  // $(".suchfeld").hide();
+  //
+  // $('#suchfeldLink').click(function(event){
+  //   if ($(this).hasClass('active')){
+  //       $(".suchfeld").hide();
+  //       $(".suchfeld").toggleClass('active');
+  //   }else{
+  //     $(".suchfeld").show();
+  //     $(".suchfeld").toggleClass('active');
+  //   }
+  // });
 
 /* ---------- profil.php ----------- */
 /*nur section profilfoto zeigts an */
