@@ -112,7 +112,6 @@
 
   /* ---- profil.php ---- */
   /* ----------------------- */
-
   // userdaten updaten
   function update_user($firstname, $lastname, $email, $password, $user_id){
       $sql_ok = false;

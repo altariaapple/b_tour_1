@@ -295,9 +295,14 @@
                    </label>
                  </div>
                </div>
+               
+               <div class="container">
+                 <input type="submit" class="btn btn-default" value="zu meinen Freunden hinzufügen" name="new_friends" />
+                </form>
+              </div>
+
        <!--Ende Section Follower-->
      </section>
-     <!--Ende Section Follower-->
 
 
         <!-- Footer -->
