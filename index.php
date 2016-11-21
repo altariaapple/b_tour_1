@@ -4,7 +4,7 @@
   if(isset($_SESSION['id'])) unset($_SESSION['id']);
   session_destroy();
 
-  require_once("system/data.php");
+  require_once('system/data.php');
 
 
   $error = false;

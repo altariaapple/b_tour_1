@@ -7,7 +7,66 @@
     $user_id = $_SESSION['userid'];
   }
 
+  require_once('system/data.php');
+
+  $result = get_user($user_id);
+  $user = mysqli_fetch_assoc($result);
+    $upload_ok = true;
+//Bildupload
+  if(isset($_POST['update-submit']))
+{
+  $description = filter_inputs($_POST['description']);
+  $title = filter_inputs($_POST['title']);
+  $img_src = "";
+  $uploader = $user_id;
+  $image_name="";
+  $like_counter=0;
+
+  $upload_path = "../img_uploads/";
+  $max_file_size = 500000;
+  $upload_ok = true;
+
+
+//Schranke Dateiname
+if ($_FILES['post_img']['name'] != "") {
+  $filetype = $_FILES['post_img']['type'];
+  switch ($filetype) {
+    case "image/jpg":
+             $file_extension = "jpg";
+             break;
+         case "image/jpeg":
+             $file_extension = "jpeg";
+             break;
+         case "image/gif":
+             $file_extension = "gif";
+             break;
+         case "image/png":
+             $file_extension = "png";
+             break;
+         default: //falls nichts zutrifft:
+           $upload_ok = false;
+     }
+     $upload_filesize = $_FILES["post_img"]["size"];
+         if ( $upload_filesize >= $max_file_size) {
+             echo "Ach mann, immer diese Schranken! Ihr Bild ist mit". $upload_filesize." KB zu gross. <br> Sie darf nicht grösser als". $max_file_size." sein." ;
+             $upload_ok = false;
+         }
+
+        if($upload_ok){
+          $image_name = time() . "_" . $user['user_id'] . "." . $file_extension;
+          move_uploaded_file($_FILES['post_img']['tmp_name'], $upload_path . $image_name );
+          echo '<script type="text/javascript">alert("Es hat alles geklappt.");</script>';
+        }else{
+          echo "Sorry, aber irgendetwas hat nicht funktioniert. Versuchen Sie es doch einfach noch einmal";
+        }
+     }
+
+
+
+     $result = bildupload($uploader, $like_counter, $description, $title, $img_src);
+   }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,7 +135,7 @@
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Hallo >hier kommt der Username<
+                <h1 class="page-header">Hallo <?php echo $user['benutzer_name'];?>
                 </h1>
             </div>
         </div>
@@ -103,7 +162,7 @@
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <form enctype="multipart/form-data" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" method="post">
+              <form enctype="multipart/form-data" action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <div class="modal-header">
                   <h4 class="modal-title" id="myModalLabel">Laden Sie hier ein Bild hoch</h4>
                 </div>
@@ -114,14 +173,20 @@
                       <!-- http://plugins.krajee.com/file-input -->
                       <label for="Tel" class="col-sm-2 form-control-label"></label>
                       <div class="col-sm-10">
-                        <input type="file" name="profil_img">
+                        <input type="file" name="post_img">
                       </div>
                     </div>
                   </div>
                   <div class="form-group row">
+                    <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Titel</label>
+                    <div class="col-sm-6 col-xs-6">
+                      <input type="text" name="title" required>
+                    </div>
+                  <div class="form-group row">
+                    <br><br>
                     <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Beschreibung</label>
-                    <div class="col-sm-5 col-xs-6">
-                      <textarea rows="4" cols="50"> Schreiben Sie hier eine Bildbeschreibung
+                    <div class="col-sm-6 col-xs-6">
+                      <textarea rows="4" cols="50" name="description" required>
                       </textarea>
 
                     </div>
@@ -132,33 +197,28 @@
                   <div class="form-group row">
                     <label for="Email" class="col-sm-2 form-control-label">Location</label>
                     <div class="col-sm-10">
-                      <form action="">
                         <input type="checkbox" name="location" value="bern"> bern <br>
-                      </form>
-
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="Passwort" class="col-sm-2 form-control-label">Tags</label>
                     <div class="col-sm-10">
-                      <form action="">
                         <input type="checkbox" name="tags" value="sonnig"> sonnig <br>
-                      </form>
                   </div>
-
-
 
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
                   <button type="submit" class="btn btn-success btn-sm" name="update-submit">Bild hochladen</button>
+
                 </div>
               </form>
 
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Locations Row -->
         <div class="row">
@@ -247,7 +307,6 @@
 
     <!-- functions.js -->
     <script src="js/functions.js"></script>
-
 </body>
 
 </html>
