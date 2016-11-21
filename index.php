@@ -1,7 +1,7 @@
 <?php
 
   session_start();
-  if(isset($_SESSION['id'])) unset($_SESSION['id']);
+  if(isset($_SESSION['userid'])) unset($_SESSION['userid']);
   session_destroy();
 
   require_once("system/data.php");
@@ -91,13 +91,16 @@
       <div class="row">
       <?php while($pictures = mysqli_fetch_assoc($post_pictures)) {
           $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+          //die $pictureID wird als Parameter dem Bild-Link übergeben
+          $pictureID = $pictures['picture_id'];
         ?>
             <div class="col-md-4">
-                <a href="location.php">
+                <a href="location.php?<?php echo $pictureID; ?>">
                     <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
                 </a>
                 <h3>
-                    <a href="location.php"><?php echo $pictures['title']; ?></a>
+                    <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
                 </h3>
                 <p><?php echo $pictures['description']; ?></p>
                 <p>Tags</p>

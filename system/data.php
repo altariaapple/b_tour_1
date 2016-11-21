@@ -56,6 +56,10 @@
  }
  /* ----------------------------------------------------------------------------- */
 
+
+ /* ---- login.php ---- */
+ /* ----------------------- */
+
  function register($username, $email, $firstname, $lastname, $password){
    $sql = "INSERT INTO user (benutzer_name, email, first_name, last_name, password) VALUES ('$username', '$email', '$firstname', '$lastname', '$password');";
    return get_result($sql);
@@ -65,4 +69,16 @@
    $sql = "SELECT * FROM user WHERE benutzer_name = '$username' AND password = '$password';";
    return get_result($sql);
  }
-?>
+ /* ----------------------------------------------------------------------------- */
+
+
+  /* ---- location.php ---- */
+  /* ----------------------- */
+  function get_certain_picture($picID){
+    $sql = "SELECT * FROM picture WHERE picture_id = '$picID';";
+    return get_result($sql);
+  }
+
+
+
+  ?>
