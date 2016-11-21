@@ -16,7 +16,7 @@
   function get_result($sql)
   {
     $db = get_db_connection();
-    //echo $sql ."<br>";
+    echo $sql ."<br>";
     $result = mysqli_query($db, $sql);
     mysqli_close($db);
     return $result;
@@ -89,4 +89,44 @@
 
   /* ----------------------------------------------------------------------------- */
 
+function update_user($firstname, $lastname, $email, $password, $user_id)
+{
+  $sql_ok = false;
+  $sql = "UPDATE user SET ";
+//   if($profilfoto != ""){ //wenn profilfoto nicht leer dann:
+//     $sql .= "profilfoto = '$profilfoto', ";  //vorhandener string wird erweitert
+//     $sql_ok = true;
+// }
+
+  if($firstname != ""){ //wenn profilfoto nicht leer dann:
+    $sql .= "first_name = '$firstname', ";  //vorhandener string wird erweitert
+    $sql_ok = true;
+  }
+
+  if($lastname != ""){ //wenn profilfoto nicht leer dann:
+    $sql .= "last_name = '$lastname', ";  //vorhandener string wird erweitert
+    $sql_ok = true;
+}
+
+  if($email != ""){ //wenn profilfoto nicht leer dann:
+    $sql .= "email = '$email', ";  //vorhandener string wird erweitert
+    $sql_ok = true;
+}
+
+  if($password != "" && $confirm_password == $password){ //wenn profilfoto nicht leer dann:
+    $sql .= "password = '$password', ";  //vorhandener string wird erweitert
+    $sql_ok = true;
+  }
+  $sql = substr_replace($sql, ' ', -2, 1);
+
+  $sql .= "WHERE user_id = $user_id;";
+
+if($sql_ok)
+{
+  return get_result($sql);
+
+} else{
+  return false;
+  }
+}
   ?>
