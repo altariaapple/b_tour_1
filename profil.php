@@ -9,10 +9,6 @@
 
   require_once('system/data.php');
 
-  $no_friend_list = get_no_friend_list($user_id);
-
-  require_once('system/data.php');
-
   if(isset($_POST['update-submit']))
   {
     // $profilfoto = filter_inputs($_POST['profil_img']);
@@ -299,35 +295,9 @@
                    </label>
                  </div>
                </div>
-
-               <div class="container">
-
-  <h3>Diesen Leuten könntest du auch noch folgen</h3><hr />
- <form method="post" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" >
-<?php while($user = mysqli_fetch_assoc($no_friend_list)) { ?>
-  <!-- Freund+ Button -->
-  <div class="form-group row p42-form-group">
-    <input type="checkbox" name="new_friends[]" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id'] ?>"/>
-    <div class="btn-group col-xs-12">
-      <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default  col-xs-2 col-sm-1">
-        <span class="glyphicon glyphicon-plus"></span>
-        <span> </span>
-      </label>
-      <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default active col-xs-10 col-sm-11">
-          <?php echo $user['firstname'] . " " . $user['lastname'] ?> <!--das label macht das + wenn ich klicke -->
-      </label>
-    </div>
-  </div>
-  <!-- /Freund+ Button -->
-<?php } ?>
-  <input type="submit" class="btn btn-default" value="zu meinen Freunden hinzufügen" name="new_friends" />
- </form>
-</div>
-                     <!-- /Freund+ Button -->
-
        <!--Ende Section Follower-->
- </section>
- <!--Ende Section Follower-->
+     </section>
+     <!--Ende Section Follower-->
 
 
         <!-- Footer -->
