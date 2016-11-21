@@ -12,7 +12,7 @@
   $success = false;
   $success_msg = "";
 
-  $post_pictures = get_pictures();
+  $post_pictures = get_all_pictures();
 
 ?>
 
@@ -27,7 +27,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Photoloc!</title>
+    <title>Photoloca</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -93,11 +93,11 @@
           $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
         ?>
             <div class="col-md-4">
-                <a href="#">
+                <a href="location.php">
                     <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
                 </a>
                 <h3>
-                    <a href="#"><?php echo $pictures['title']; ?></a>
+                    <a href="location.php"><?php echo $pictures['title']; ?></a>
                 </h3>
                 <p><?php echo $pictures['description']; ?></p>
                 <p>Tags</p>

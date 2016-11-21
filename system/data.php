@@ -45,7 +45,7 @@
  /* ---- index.php ---- */
  /* ----------------------- */
 
- function get_pictures(){
+ function get_all_pictures(){
    $sql = "SELECT * FROM picture";
    return get_result($sql);
  }
