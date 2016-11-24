@@ -17,15 +17,18 @@
 
   if(isset($_POST['update-submit']))
   {
-    // $profilfoto = filter_inputs($_POST['profil_img']);
+    // $profilfoto = filter_inputs($_POST[' nprofil_img']);
     $firstname = filter_inputs($_POST['firstname']);
     $lastname = filter_inputs($_POST['lastname']);
     $email = filter_inputs($_POST['email']);
     $password = filter_inputs($_POST['password']);
+    $confirm_password = filter_inputs($_POST['confirm-password']);
 
-    $result = update_user($firstname, $lastname, $email, $password, $user_id);
+    $result = update_user($firstname, $lastname, $email, $password, $confirm_password, $user_id);
   }
 
+<<<<<<< HEAD
+=======
   //Freund hinzufüegen
   if(isset($_POST['del_friends'])){
     $remove_friend = filter_inputs($_POST['del_friends']);
@@ -34,6 +37,7 @@
 
 $friend_list = get_friend_list($user_id);
 
+>>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
 ?>
 
 <!DOCTYPE html>
@@ -120,7 +124,7 @@ $friend_list = get_friend_list($user_id);
                <!-- boostrap component Button group: drei Buttons nebeineinander -->
                <div class="btn-group btn-group-justified" role="group" aria-label="...">
                  <div class="btn-group" role="group">
-                   <button type="button" class="btn btn-default" id="profilfoto" value="profilfoto">Profilfoto</button>
+                   <button type="button" class="btn btn-default" id="profilfoto" value="profilfoto">Einstellungen</button>
                  </div>
                  <div class="btn-group" role="group">
                    <button type="button" class="btn btn-default" id="meinefotos" value="meinefotos">Meine Fotos</button>
@@ -138,81 +142,74 @@ $friend_list = get_friend_list($user_id);
             </div>
        <!-- Ende Subnav -->
 
-<!--Section Profilbild-->
+<!--Section Einstellungen-->
  <section id="profilfoto">
-        <!-- Profilfoto -->
-        <h2>Du siehst super aus!</h2>
-
+        <!-- Einstellungen -->
+        <h2>Passe hier deine Profileinstellungen an</h2>
         <div class="row">
-            <div class="col-md-12 col-lg-12 portfolio-item">
-              <div class="col-md-4 col-sm-4">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <p>"Was für ein schöner Tag in New York City"</p>
-              </div>
-              <div class="col-md-8 col-sm-8">
+                   <div class="col-md-12 col-lg-12 portfolio-item">
+                     <div class="col-md-8 col-sm-8">
                 <!--Start Formular -->
                 <form enctype="multipart/form-data" action="profil.php" method="post">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Persönliche Einstellungen</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
+            <div class="col-sm-5 col-xs-6">
+              <input  type="text" class="form-control form-control-sm"
+                      id="Vorname" placeholder=""
+                      name="firstname" value="<?php echo $user['first_name'];?>">
+            </div>
+            <div class="col-sm-5 col-xs-6">
+              <input  type="text" class="form-control form-control-sm"
+                      id="Nachname" placeholder=""
+                      name="lastname" value="<?php echo $user['last_name'];?>">
 
-                  <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Persönliche Einstellungen</h4>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group row">
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
-                      <div class="col-sm-5 col-xs-6">
-                        <input  type="text" class="form-control form-control-sm"
-                                id="Vorname" placeholder=""
-                                name="firstname" value="<?php echo $user['first_name'];?>">
-                      </div>
-                      <div class="col-sm-5 col-xs-6">
-                        <input  type="text" class="form-control form-control-sm"
-                                id="Nachname" placeholder=""
-                                name="lastname" value="<?php echo $user['last_name'];?>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
+            <div class="col-sm-10">
+              <input  type="email" class="form-control form-control-sm"
+                      id="Email" placeholder="" required
+                      name="email" value="<?php echo $user['email'];?>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Passwort" class="col-sm-2 form-control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control form-control-sm" id="Passwort" placeholder="Passwort" name="password">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Passwort_Conf" class="col-sm-2 form-control-label">Passwort bestätigen</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control form-control-sm" id="Passwort_Conf" placeholder="Passwort" name="confirm-password">
+            </div>
+          </div>
 
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
-                      <div class="col-sm-10">
-                        <input  type="email" class="form-control form-control-sm"
-                                id="Email" placeholder="" required
-                                name="email" value="<?php echo $user['email'];?>">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="Passwort" class="col-sm-2 form-control-label">Password</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control form-control-sm" id="Passwort" placeholder="Passwort" name="password">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="Passwort_Conf" class="col-sm-2 form-control-label">Passwort bestätigen</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control form-control-sm" id="Passwort_Conf" placeholder="Passwort" name="confirm-password">
-                      </div>
-                    </div>
+          <div class="form-group row">
+            <!-- http://plugins.krajee.com/file-input -->
+            <label for="Tel" class="col-sm-2 form-control-label">Profilbild</label>
+            <div class="col-sm-10">
+              <input type="file" name="profil_img">
+            </div>
+          </div>
+        </div> <br>
+        <div class="col-md-12">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
+            <button type="submit" class="btn btn-success btn-sm" name="update-submit">Änderungen speichern</button>
+        </div>
+        </div>
+      </form>
 
-                    <div class="form-group row">
-                      <!-- http://plugins.krajee.com/file-input -->
-                      <label for="Tel" class="col-sm-2 form-control-label">Profilbild</label>
-                      <div class="col-sm-10">
-                        <input type="file" name="profil_img">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
-                    <button type="submit" class="btn btn-success btn-sm" name="update-submit">Änderungen speichern</button>
-                  </div>
-                </form>
                 <!--Ende Formular -->
-
  </section>
 
  <section id="meinefotos">
@@ -271,7 +268,54 @@ $friend_list = get_friend_list($user_id);
     </div>
     <!-- /.row -->
  </section>
+ <!--Ende Section Favoriten-->
 
+ <section id="follower">
+   <!--Start Section Follower-->
+   <h2>Following</h2>
+   <form method="post" action="friends.php" >
+         <!-- Freund+ Button -->
+         <div class="form-group row p42-form-group">
+           <input type="checkbox" name="new_friends[]" id="userid2" autocomplete="off" value="2"/>
+           <div class="btn-group col-xs-6">
+             <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
+               <span class="glyphicon glyphicon-plus"></span>
+               <span> </span>
+             </label>
+             <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
+                 Simonne Bosiers
+             </label>
+           </div>
+         </div>
+         <!-- /Freund+ Button -->
+         <!-- Freund+ Button -->
+         <div class="form-group row p42-form-group">
+           <input type="checkbox" name="new_friends[]" id="userid3" autocomplete="off" value="3"/>
+           <div class="btn-group col-xs-6">
+             <label for="userid3" class="btn btn-default  col-xs-2 col-sm-1">
+               <span class="glyphicon glyphicon-plus"></span>
+               <span> </span>
+             </label>
+             <label for="userid3" class="btn btn-default active col-xs-10 col-sm-11">
+                 Rolf Hofstetter
+             </label>
+           </div>
+         </div>
+          <!-- /Freund+ Button -->
+          <input type="submit" class="btn btn-default" value="Diese Freunde löschen" />
+         </form>
+
+<<<<<<< HEAD
+         <h2>Follower</h2>
+         <form method="post" action="friends.php" >
+               <!-- Freund+ Button -->
+               <div class="form-group row p42-form-group">
+                 <input type="checkbox" name="new_friends[]" id="userid2" autocomplete="off" value="2"/>
+                 <div class="btn-group col-xs-6">
+                   <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
+                     <span class="glyphicon glyphicon-plus"></span>
+                     <span> </span>
+=======
 <section id="follower">
  <!-- Meine Freunde -->
  <!-- Seitenleiste -->
@@ -288,12 +332,38 @@ $friend_list = get_friend_list($user_id);
                  <div class="btn-group col-xs-12">
                    <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default col-xs-2 col-sm-1 col-md-2">
                      <span class="glyphicon glyphicon-minus"></span>
+>>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
                    </label>
-                   <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default active col-xs-10 col-sm-11 col-md-10">
-                       <?php echo $user['first_name'] . " " . $user['last_name'] ?>
+                   <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
+                       Simonne Bosiers
                    </label>
-                   </div>
                  </div>
+<<<<<<< HEAD
+               </div>
+               <!-- /Freund+ Button -->
+               <!-- Freund+ Button -->
+               <div class="form-group row p42-form-group">
+                 <input type="checkbox" name="new_friends[]" id="userid3" autocomplete="off" value="3"/>
+                 <div class="btn-group col-xs-6">
+                   <label for="userid3" class="btn btn-default  col-xs-2 col-sm-1">
+                     <span class="glyphicon glyphicon-plus"></span>
+                     <span> </span>
+                   </label>
+                   <label for="userid3" class="btn btn-default active col-xs-10 col-sm-11">
+                       Rolf Hofstetter
+                   </label>
+                 </div>
+               </div>
+
+               <div class="container">
+                 <input type="submit" class="btn btn-default" value="zu meinen Freunden hinzufügen" name="new_friends" />
+                </form>
+              </div>
+
+       <!--Ende Section Follower-->
+     </section>
+
+=======
                  <?php
                 }
                 ?>
@@ -302,12 +372,13 @@ $friend_list = get_friend_list($user_id);
            </div>
          </div>
  </section>
+>>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
 
         <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2016</p>
+                    <p>Copyright &copy; Your Website 2014</p>
                 </div>
             </div>
             <!-- /.row -->

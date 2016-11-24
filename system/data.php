@@ -46,7 +46,7 @@
  /* ----------------------- */
 
  function get_all_pictures(){
-   $sql = "SELECT * FROM picture ORDER BY timestamp DESC;";
+   $sql = "SELECT * FROM picture";
    return get_result($sql);
  }
 
@@ -79,6 +79,10 @@
     return get_result($sql);
   }
 
+<<<<<<< HEAD
+  function update_like($picID,$userID){
+    $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID');";
+=======
   function update_like($picID, $userID){
     $check_sql = "SELECT * FROM likes2 WHERE liker = '$userID' AND picture = '$picID';";
     $check_result = get_result($check_sql);
@@ -101,6 +105,7 @@
     // like counter erhöhen
     $sql = "UPDATE picture SET like_counter = like_counter+1 WHERE picture_id = '$picID';";
     return get_result($sql);
+>>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
   }
   /* ----------------------------------------------------------------------------- */
 
@@ -133,7 +138,7 @@
   /* ---- profil.php ---- */
   /* ----------------------- */
   // userdaten updaten
-  function update_user($firstname, $lastname, $email, $password, $user_id){
+  function update_user($firstname, $lastname, $email, $password, $confirm_password, $user_id){
       $sql_ok = false;
       $sql = "UPDATE user SET ";
     //   if($profilfoto != ""){ //wenn profilfoto nicht leer dann:
@@ -141,23 +146,22 @@
     //     $sql_ok = true;
     // }
 
-      if($firstname != ""){ //wenn profilfoto nicht leer dann:
-        $sql .= "first_name = '$firstname', ";  //vorhandener string wird erweitert
+      if($firstname != ""){
+        $sql .= "first_name = '$firstname', ";
         $sql_ok = true;
       }
 
-      if($lastname != ""){ //wenn profilfoto nicht leer dann:
-        $sql .= "last_name = '$lastname', ";  //vorhandener string wird erweitert
+      if($lastname != ""){
+        $sql .= "last_name = '$lastname', ";
         $sql_ok = true;
       }
 
-      if($email != ""){ //wenn profilfoto nicht leer dann:
-        $sql .= "email = '$email', ";  //vorhandener string wird erweitert
-        $sql_ok = true;
+      if($email != ""){
+        $sql .= "email = '$email', ";
       }
 
-      if($password != "" && $confirm_password == $password){ //wenn profilfoto nicht leer dann:
-        $sql .= "password = '$password', ";  //vorhandener string wird erweitert
+      if($password != "" && $confirm_password == $password){
+        $sql .= "password = '$password', ";
         $sql_ok = true;
       }
 
@@ -171,7 +175,8 @@
       } else{
         return false;
       }
-    }
+
+}
 
 
 
