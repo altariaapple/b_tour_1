@@ -25,7 +25,7 @@
   $post_klicked_picture_owner = mysqli_fetch_assoc($get_klicked_picture_owner);
 
 
-  //Like und Dislike Button
+  //Like Button
   if(isset($_POST['like-submit'])){
     update_like($post_klicked_picture['picture_id'], $user_id);
   }
@@ -154,8 +154,8 @@
                   <form enctype="multipart/form-data" action="<?php echo $current_url; ?>" method="post">
                     <?php if(isset($_SESSION['userid'])){ ?>
                       <button type="submit" name="like-submit" class="col-lg-1 col-lg-offset-3 likeButton"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+                      <!--  Likecounter -->
                       <p class="col-lg-1"><?php echo $post_klicked_picture['like_counter']; ?></p>
-                      <button type="submit" name="dislike-submit" class="col-lg-1 dislikeButton"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
                     <?php } ?>
                   </form>
                 </div>

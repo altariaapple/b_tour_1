@@ -12,6 +12,9 @@
   $result = get_user($user_id);
   $user = mysqli_fetch_assoc($result);
 
+  $post_favorite_pictures = get_favorite_pictures($user_id);
+  $post_my_pictures = get_my_pictures($user_id);
+
   if(isset($_POST['update-submit']))
   {
     // $profilfoto = filter_inputs($_POST['profil_img']);
@@ -211,29 +214,56 @@
 
   <h2>Deine Fotos</h2>
       <!-- Fotos -->
-      <div class="row">
-          <div class="col-md-12 col-lg-12 portfolio-item">
-            <div class="col-md-4 col-sm-4">
-              <a href="#">
-                  <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-              </a>
+      <?php while($pictures = mysqli_fetch_assoc($post_my_pictures)) {
+          $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+          //die $pictureID wird als Parameter dem Bild-Link übergeben
+          $pictureID = $pictures['picture_id'];
+        ?>
+            <div class="col-md-4">
+                <a href="location.php?<?php echo $pictureID; ?>">
+                    <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
+                </a>
+                <h3>
+                    <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
+                </h3>
+                <p><?php echo $pictures['description']; ?></p>
+                <p>Tags</p>
+                <p>von <?php echo $post_picture_owner['first_name']. " " .$post_picture_owner['last_name']; ?></p>
             </div>
-            <div class="col-md-8 col-sm-8">
+
+      <?php }?>
+      </div>
  </section>
  <!--Ende Section Meine Fotos-->
 
  <section id="favoriten">
    <!--Start Section Favoriten-->
-    <h2>Das sind deine Favoriten</h2>
+    <h2>Fotos die du geliked hast</h2>
     <!-- Fotos -->
+    <!-- Locations Row -->
     <div class="row">
-        <div class="col-md-12 col-lg-12 portfolio-item">
-          <div class="col-md-4 col-sm-4">
-            <a href="#">
-                <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-            </a>
-                  </div>
-          <div class="col-md-8 col-sm-8">
+    <?php while($pictures = mysqli_fetch_assoc($post_favorite_pictures)) {
+        $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+        //die $pictureID wird als Parameter dem Bild-Link übergeben
+        $pictureID = $pictures['picture_id'];
+      ?>
+          <div class="col-md-4">
+              <a href="location.php?<?php echo $pictureID; ?>">
+                  <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
+              </a>
+              <h3>
+                  <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
+              </h3>
+              <p><?php echo $pictures['description']; ?></p>
+              <p>Tags</p>
+              <p>von <?php echo $post_picture_owner['first_name']. " " .$post_picture_owner['last_name']; ?></p>
+          </div>
+
+    <?php }?>
+    </div>
+    <!-- /.row -->
  </section>
 
 <section id="follower">
