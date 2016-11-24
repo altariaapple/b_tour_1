@@ -160,14 +160,14 @@ function get_friend_list($user_id){
 		return get_result($sql);
 	}
 
- function freund_hinzufuegen(){
+ function freund_hinzufuegen($user_id, $get_klicked_picture_owner){
    $sql = "INSERT INTO follower2 (`user_id_follower`, `user_id_followed`) VALUES ($user_id, $get_klicked_picture_owner);";
    return get_result($sql);
 }
 
-function remove_friends($user_id, $friend_list){
-   $sql = "DELETE FROM follower2 WHERE user = $user_id AND friend = $friend_id;";
-   get_result($sql);
+function remove_friends($user_id, $remove_friend){
+   $sql = "DELETE FROM follower2 WHERE user_id_follower = $user_id AND user_id_followed = $remove_friend;";
+   return get_result($sql);
  }
 
 

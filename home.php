@@ -28,7 +28,7 @@
   $like_counter=0;
 
   $upload_path = "../img_uploads/";
-  $max_file_size = 500000;
+  $max_file_size = 1000000;
   $upload_ok = true;
 
 
@@ -67,8 +67,7 @@ if ($_FILES['post_img']['name'] != "") {
      }
 
 
-
-     $result = bildupload($uploader, $like_counter, $description, $title, $image_name);
+$result = bildupload($uploader, $like_counter, $description, $title, $image_name);
    }
 ?>
 

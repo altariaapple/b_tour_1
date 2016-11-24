@@ -32,7 +32,7 @@
 
   //Freund hinzufüegen
   if(isset($_POST['freund_hinzufuegen'])){
-    $result = freund_hinzufuegen();
+    $result = freund_hinzufuegen($user_id, $post_klicked_picture['uploader']);
 }
 
  ?>
@@ -162,8 +162,8 @@
                 <p><?php echo $post_klicked_picture['description']; ?></p>
             </div>
 
-            <form method="post" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" ></li>
-            <button type="button" class="btn btn-default" name="freund_hinzufuegen">Diesem User folgen</button>
+            <form method="post">
+              <button type="submit" class="btn btn-default" name="freund_hinzufuegen">Diesem User folgen</button>
             </form>
 
     <!-- jQuery -->

@@ -23,7 +23,13 @@
     $result = update_user($firstname, $lastname, $email, $password, $user_id);
   }
 
-  $friend_list = get_friend_list($user_id);
+  //Freund hinzufüegen
+  if(isset($_POST['del_friends'])){
+    $remove_friend = filter_inputs($_POST['del_friends']);
+    $result = remove_friends($user_id, $remove_friend);
+}
+
+$friend_list = get_friend_list($user_id);
 
 ?>
 
@@ -244,11 +250,11 @@
          <div class="panel panel-default">
            <div class="panel-heading">Meine Freunde
            <div class="panel-body">
-             <form method="post" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" >
+             <form method="post" type="submit" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" >
                <?php while($user = mysqli_fetch_assoc($friend_list)) {?>
              <!-- User als Freund hinzufügen -->
                <div class="form-group row p42-form-group">
-                 <input type="checkbox" name="del_friends[]" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id'] ?>" />
+                 <input type="submit" name="del_friends" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id'] ?>" />
                  <div class="btn-group col-xs-12">
                    <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default col-xs-2 col-sm-1 col-md-2">
                      <span class="glyphicon glyphicon-minus"></span>
@@ -266,8 +272,6 @@
            </div>
          </div>
          <!-- /User als Freund löschen -->
-         <input type="submit" class="btn btn-default" name="freunde_loeschen" value="Freunde löschen" />
-
  </section>
 
         <!-- Footer -->
