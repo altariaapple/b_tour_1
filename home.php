@@ -28,7 +28,7 @@
   $like_counter=0;
 
   $upload_path = "../img_uploads/";
-  $max_file_size = 500000;
+  $max_file_size = 1000000;
   $upload_ok = true;
 
 
@@ -61,14 +61,12 @@ if ($_FILES['post_img']['name'] != "") {
           $image_name = time() . "_" . $user['user_id'] . "." . $file_extension;
           move_uploaded_file($_FILES['post_img']['tmp_name'], $upload_path . $image_name );
           echo '<script type="text/javascript">alert("Es hat alles geklappt.");</script>';
+          $result = bildupload($uploader, $like_counter, $description, $title, $image_name);
         }else{
           echo "Sorry, aber irgendetwas hat nicht funktioniert. Versuchen Sie es doch einfach noch einmal";
         }
      }
 
-
-
-     $result = bildupload($uploader, $like_counter, $description, $title, $image_name);
    }
 ?>
 

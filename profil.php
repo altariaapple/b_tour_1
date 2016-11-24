@@ -12,6 +12,9 @@
   $result = get_user($user_id);
   $user = mysqli_fetch_assoc($result);
 
+  $post_favorite_pictures = get_favorite_pictures($user_id);
+  $post_my_pictures = get_my_pictures($user_id);
+
   if(isset($_POST['update-submit']))
   {
     // $profilfoto = filter_inputs($_POST[' nprofil_img']);
@@ -24,6 +27,17 @@
     $result = update_user($firstname, $lastname, $email, $password, $confirm_password, $user_id);
   }
 
+<<<<<<< HEAD
+=======
+  //Freund hinzufüegen
+  if(isset($_POST['del_friends'])){
+    $remove_friend = filter_inputs($_POST['del_friends']);
+    $result = remove_friends($user_id, $remove_friend);
+}
+
+$friend_list = get_friend_list($user_id);
+
+>>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
 ?>
 
 <!DOCTYPE html>
@@ -203,29 +217,56 @@
 
   <h2>Deine Fotos</h2>
       <!-- Fotos -->
-      <div class="row">
-          <div class="col-md-12 col-lg-12 portfolio-item">
-            <div class="col-md-4 col-sm-4">
-              <a href="#">
-                  <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-              </a>
+      <?php while($pictures = mysqli_fetch_assoc($post_my_pictures)) {
+          $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+          //die $pictureID wird als Parameter dem Bild-Link übergeben
+          $pictureID = $pictures['picture_id'];
+        ?>
+            <div class="col-md-4">
+                <a href="location.php?<?php echo $pictureID; ?>">
+                    <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
+                </a>
+                <h3>
+                    <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
+                </h3>
+                <p><?php echo $pictures['description']; ?></p>
+                <p>Tags</p>
+                <p>von <?php echo $post_picture_owner['first_name']. " " .$post_picture_owner['last_name']; ?></p>
             </div>
-            <div class="col-md-8 col-sm-8">
+
+      <?php }?>
+      </div>
  </section>
  <!--Ende Section Meine Fotos-->
 
  <section id="favoriten">
    <!--Start Section Favoriten-->
-    <h2>Das sind deine Favoriten</h2>
+    <h2>Fotos die du geliked hast</h2>
     <!-- Fotos -->
+    <!-- Locations Row -->
     <div class="row">
-        <div class="col-md-12 col-lg-12 portfolio-item">
-          <div class="col-md-4 col-sm-4">
-            <a href="#">
-                <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-            </a>
-                  </div>
-          <div class="col-md-8 col-sm-8">
+    <?php while($pictures = mysqli_fetch_assoc($post_favorite_pictures)) {
+        $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+        //die $pictureID wird als Parameter dem Bild-Link übergeben
+        $pictureID = $pictures['picture_id'];
+      ?>
+          <div class="col-md-4">
+              <a href="location.php?<?php echo $pictureID; ?>">
+                  <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
+              </a>
+              <h3>
+                  <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
+              </h3>
+              <p><?php echo $pictures['description']; ?></p>
+              <p>Tags</p>
+              <p>von <?php echo $post_picture_owner['first_name']. " " .$post_picture_owner['last_name']; ?></p>
+          </div>
+
+    <?php }?>
+    </div>
+    <!-- /.row -->
  </section>
  <!--Ende Section Favoriten-->
 
@@ -264,6 +305,7 @@
           <input type="submit" class="btn btn-default" value="Diese Freunde löschen" />
          </form>
 
+<<<<<<< HEAD
          <h2>Follower</h2>
          <form method="post" action="friends.php" >
                <!-- Freund+ Button -->
@@ -273,11 +315,30 @@
                    <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
                      <span class="glyphicon glyphicon-plus"></span>
                      <span> </span>
+=======
+<section id="follower">
+ <!-- Meine Freunde -->
+ <!-- Seitenleiste -->
+       <div class="col-md-12">
+         <!-- Userliste -->
+         <div class="panel panel-default">
+           <div class="panel-heading">Meine Freunde
+           <div class="panel-body">
+             <form method="post" type="submit" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" >
+               <?php while($user = mysqli_fetch_assoc($friend_list)) {?>
+             <!-- User als Freund hinzufügen -->
+               <div class="form-group row p42-form-group">
+                 <input type="submit" name="del_friends" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id'] ?>" />
+                 <div class="btn-group col-xs-12">
+                   <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default col-xs-2 col-sm-1 col-md-2">
+                     <span class="glyphicon glyphicon-minus"></span>
+>>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
                    </label>
                    <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
                        Simonne Bosiers
                    </label>
                  </div>
+<<<<<<< HEAD
                </div>
                <!-- /Freund+ Button -->
                <!-- Freund+ Button -->
@@ -302,6 +363,16 @@
        <!--Ende Section Follower-->
      </section>
 
+=======
+                 <?php
+                }
+                ?>
+              </form>
+             </div>
+           </div>
+         </div>
+ </section>
+>>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
 
         <!-- Footer -->
         <footer>
