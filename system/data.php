@@ -79,10 +79,6 @@
     return get_result($sql);
   }
 
-<<<<<<< HEAD
-  function update_like($picID,$userID){
-    $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID');";
-=======
   function update_like($picID, $userID){
     $check_sql = "SELECT * FROM likes2 WHERE liker = '$userID' AND picture = '$picID';";
     $check_result = get_result($check_sql);
@@ -105,7 +101,6 @@
     // like counter erhöhen
     $sql = "UPDATE picture SET like_counter = like_counter+1 WHERE picture_id = '$picID';";
     return get_result($sql);
->>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
   }
   /* ----------------------------------------------------------------------------- */
 
