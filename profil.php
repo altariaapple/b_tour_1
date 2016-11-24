@@ -26,6 +26,7 @@
 
     $result = update_user($firstname, $lastname, $email, $password, $confirm_password, $user_id);
   }
+
   //Freund hinzufüegen
   if(isset($_POST['del_friends'])){
     $remove_friend = filter_inputs($_POST['del_friends']);
@@ -33,6 +34,7 @@
 }
 
 $friend_list = get_friend_list($user_id);
+
 ?>
 
 <!DOCTYPE html>
