@@ -197,8 +197,6 @@
   	}
 
 
-
-
     function freund_hinzufuegen($user_id, $get_klicked_picture_owner){
       $sql = "INSERT INTO follower2 (`user_id_follower`, `user_id_followed`) VALUES ($user_id, $get_klicked_picture_owner);";
       return get_result($sql);
