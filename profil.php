@@ -9,6 +9,9 @@
 
   require_once('system/data.php');
 
+  $result = get_user($user_id);
+  $user = mysqli_fetch_assoc($result);
+
   if(isset($_POST['update-submit']))
   {
     // $profilfoto = filter_inputs($_POST['profil_img']);
@@ -19,6 +22,8 @@
 
     $result = update_user($firstname, $lastname, $email, $password, $user_id);
   }
+
+  $friend_list = get_friend_list($user_id);
 
 ?>
 
@@ -140,6 +145,7 @@
               <div class="col-md-8 col-sm-8">
                 <!--Start Formular -->
                 <form enctype="multipart/form-data" action="profil.php" method="post">
+
                   <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Persönliche Einstellungen</h4>
                   </div>
@@ -152,21 +158,22 @@
                       <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
                       <div class="col-sm-5 col-xs-6">
                         <input  type="text" class="form-control form-control-sm"
-                                id="Vorname" placeholder="Vorname"
-                                name="firstname" value="">
+                                id="Vorname" placeholder=""
+                                name="firstname" value="<?php echo $user['first_name'];?>">
                       </div>
                       <div class="col-sm-5 col-xs-6">
                         <input  type="text" class="form-control form-control-sm"
-                                id="Nachname" placeholder="Nachname"
-                                name="lastname" value="">
+                                id="Nachname" placeholder=""
+                                name="lastname" value="<?php echo $user['last_name'];?>">
+
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
                       <div class="col-sm-10">
                         <input  type="email" class="form-control form-control-sm"
-                                id="Email" placeholder="E-Mail" required
-                                name="email" value="">
+                                id="Email" placeholder="" required
+                                name="email" value="<?php echo $user['email'];?>">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -195,7 +202,6 @@
                     <button type="submit" class="btn btn-success btn-sm" name="update-submit">Änderungen speichern</button>
                   </div>
                 </form>
-
                 <!--Ende Formular -->
 
  </section>
@@ -229,87 +235,46 @@
                   </div>
           <div class="col-md-8 col-sm-8">
  </section>
- <!--Ende Section Favoriten-->
 
- <section id="follower">
-   <!--Start Section Follower-->
-   <h2>Following</h2>
-   <form method="post" action="friends.php" >
-         <!-- Freund+ Button -->
-         <div class="form-group row p42-form-group">
-           <input type="checkbox" name="new_friends[]" id="userid2" autocomplete="off" value="2"/>
-           <div class="btn-group col-xs-6">
-             <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
-               <span class="glyphicon glyphicon-plus"></span>
-               <span> </span>
-             </label>
-             <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
-                 Simonne Bosiers
-             </label>
+<section id="follower">
+ <!-- Meine Freunde -->
+ <!-- Seitenleiste -->
+       <div class="col-md-12">
+         <!-- Userliste -->
+         <div class="panel panel-default">
+           <div class="panel-heading">Meine Freunde
+           <div class="panel-body">
+             <form method="post" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" >
+               <?php while($user = mysqli_fetch_assoc($friend_list)) {?>
+             <!-- User als Freund hinzufügen -->
+               <div class="form-group row p42-form-group">
+                 <input type="checkbox" name="del_friends[]" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id'] ?>" />
+                 <div class="btn-group col-xs-12">
+                   <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default col-xs-2 col-sm-1 col-md-2">
+                     <span class="glyphicon glyphicon-minus"></span>
+                   </label>
+                   <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default active col-xs-10 col-sm-11 col-md-10">
+                       <?php echo $user['first_name'] . " " . $user['last_name'] ?>
+                   </label>
+                   </div>
+                 </div>
+                 <?php
+                }
+                ?>
+              </form>
+             </div>
            </div>
          </div>
-         <!-- /Freund+ Button -->
-         <!-- Freund+ Button -->
-         <div class="form-group row p42-form-group">
-           <input type="checkbox" name="new_friends[]" id="userid3" autocomplete="off" value="3"/>
-           <div class="btn-group col-xs-6">
-             <label for="userid3" class="btn btn-default  col-xs-2 col-sm-1">
-               <span class="glyphicon glyphicon-plus"></span>
-               <span> </span>
-             </label>
-             <label for="userid3" class="btn btn-default active col-xs-10 col-sm-11">
-                 Rolf Hofstetter
-             </label>
-           </div>
-         </div>
-          <!-- /Freund+ Button -->
-          <input type="submit" class="btn btn-default" value="Diese Freunde löschen" />
-         </form>
-
-         <h2>Follower</h2>
-         <form method="post" action="friends.php" >
-               <!-- Freund+ Button -->
-               <div class="form-group row p42-form-group">
-                 <input type="checkbox" name="new_friends[]" id="userid2" autocomplete="off" value="2"/>
-                 <div class="btn-group col-xs-6">
-                   <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
-                     <span class="glyphicon glyphicon-plus"></span>
-                     <span> </span>
-                   </label>
-                   <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
-                       Simonne Bosiers
-                   </label>
-                 </div>
-               </div>
-               <!-- /Freund+ Button -->
-               <!-- Freund+ Button -->
-               <div class="form-group row p42-form-group">
-                 <input type="checkbox" name="new_friends[]" id="userid3" autocomplete="off" value="3"/>
-                 <div class="btn-group col-xs-6">
-                   <label for="userid3" class="btn btn-default  col-xs-2 col-sm-1">
-                     <span class="glyphicon glyphicon-plus"></span>
-                     <span> </span>
-                   </label>
-                   <label for="userid3" class="btn btn-default active col-xs-10 col-sm-11">
-                       Rolf Hofstetter
-                   </label>
-                 </div>
-               </div>
-
-               <div class="container">
-                 <input type="submit" class="btn btn-default" value="zu meinen Freunden hinzufügen" name="new_friends" />
-                </form>
-              </div>
-
-       <!--Ende Section Follower-->
-     </section>
-
+       </div>
+       <!-- /User als Freund löschen -->
+      <input type="submit" class="btn btn-default" name="freunde_loeschen" value="Freunde löschen" />
+ </section>
 
         <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Your Website 2016</p>
                 </div>
             </div>
             <!-- /.row -->

@@ -7,9 +7,7 @@
     unset($_SESSION['userid']);
     session_destroy();
   }
-
   require_once("system/data.php");
-
 
 
   // aktuelle URL bekommen, damit parameter am schluss geholt werden kann
@@ -27,11 +25,16 @@
   $post_klicked_picture_owner = mysqli_fetch_assoc($get_klicked_picture_owner);
 
 
-
   //Like und Dislike Button
   if(isset($_POST['like-submit'])){
     update_like($post_klicked_picture['picture_id'], $user_id);
   }
+
+  //Freund hinzufüegen
+  if(isset($_POST['freund_hinzufuegen'])){
+    $result = freund_hinzufuegen();
+}
+
  ?>
 
 <!DOCTYPE html>
@@ -161,6 +164,9 @@
                 <p><?php echo $post_klicked_picture['description']; ?></p>
             </div>
 
+            <form method="post" action="<?PHP echo $_SERVER['PHP_SELF'] ?>" ></li>
+            <button type="button" class="btn btn-default" name="freund_hinzufuegen">Diesem User folgen</button>
+            </form>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
