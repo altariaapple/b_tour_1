@@ -46,7 +46,7 @@
  /* ----------------------- */
 
  function get_all_pictures(){
-   $sql = "SELECT * FROM picture";
+   $sql = "SELECT * FROM picture ORDER BY timestamp DESC;";
    return get_result($sql);
  }
 
@@ -163,6 +163,24 @@
     AND  NOT user_id = $user_id;";
   return get_result($sql);
 }
+
+function get_friend_list($user_id){
+    $sql = "SELECT * FROM user WHERE user_id in
+              (SELECT user_id_followed FROM follower2 WHERE user_id_follower = $user_id)
+              AND  NOT user_id = $user_id;";
+		return get_result($sql);
+	}
+
+
+ function freund_hinzufuegen(){
+   $sql = "INSERT INTO follower2 (`user_id_follower`, `user_id_followed`) VALUES ($user_id, $get_klicked_picture_owner);";
+   return get_result($sql);
+}
+
+function remove_friends($user_id, $friend_list){
+   $sql = "DELETE FROM follower2 WHERE user = $user_id AND friend = $friend_id;";
+   get_result($sql);
+ }
 
 
   ?>
