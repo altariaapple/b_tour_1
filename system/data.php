@@ -16,7 +16,7 @@
   function get_result($sql)
   {
     $db = get_db_connection();
-    //echo $sql ."<br>";
+    echo $sql ."<br>";
     $result = mysqli_query($db, $sql);
     mysqli_close($db);
     return $result;
@@ -79,8 +79,9 @@
     return get_result($sql);
   }
 
-  function update_like($picID,$userID){
+  function update_like($picID, $userID){
     $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID');";
+    return get_result($sql);
   }
   /* ----------------------------------------------------------------------------- */
 

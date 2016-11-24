@@ -30,7 +30,7 @@
 
   //Like und Dislike Button
   if(isset($_POST['like-submit'])){
-    $result = update_like();
+    update_like($post_klicked_picture['picture_id'], $user_id);
   }
  ?>
 
@@ -148,11 +148,13 @@
                 <div class="row">
                   <p class="col-lg-2"><?php echo $post_klicked_picture['timestamp']; ?></p>
                   <!-- Like Button nur möglich wenn man eingeloggt ist -->
-                  <?php if(isset($_SESSION['userid'])){ ?>
-                    <button type="submit" name="like-submit" class="col-lg-1 col-lg-offset-3 likeButton"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
-                    <p class="col-lg-1"><?php echo $post_klicked_picture['like_counter']; ?></p>
-                    <button type="submit" name="dislike-submit" class="col-lg-1 dislikeButton"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
-                  <?php } ?>
+                  <form enctype="multipart/form-data" action="<?php echo $current_url; ?>" method="post">
+                    <?php if(isset($_SESSION['userid'])){ ?>
+                      <button type="submit" name="like-submit" class="col-lg-1 col-lg-offset-3 likeButton"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+                      <p class="col-lg-1"><?php echo $post_klicked_picture['like_counter']; ?></p>
+                      <button type="submit" name="dislike-submit" class="col-lg-1 dislikeButton"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
+                    <?php } ?>
+                  </form>
                 </div>
 
                 <p>geposten von <?php echo $post_klicked_picture_owner['first_name']. " " .$post_klicked_picture_owner['last_name']; ?></p>

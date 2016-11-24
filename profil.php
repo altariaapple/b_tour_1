@@ -140,61 +140,61 @@
               <div class="col-md-8 col-sm-8">
                 <!--Start Formular -->
                 <form enctype="multipart/form-data" action="profil.php" method="post">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Persönliche Einstellungen</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group row">
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
-            <div class="col-sm-5 col-xs-6">
-              <input  type="text" class="form-control form-control-sm"
-                      id="Vorname" placeholder="Vorname"
-                      name="firstname" value="">
-            </div>
-            <div class="col-sm-5 col-xs-6">
-              <input  type="text" class="form-control form-control-sm"
-                      id="Nachname" placeholder="Nachname"
-                      name="lastname" value="">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
-            <div class="col-sm-10">
-              <input  type="email" class="form-control form-control-sm"
-                      id="Email" placeholder="E-Mail" required
-                      name="email" value="">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Passwort" class="col-sm-2 form-control-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control form-control-sm" id="Passwort" placeholder="Passwort" name="password">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Passwort_Conf" class="col-sm-2 form-control-label">Passwort bestätigen</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control form-control-sm" id="Passwort_Conf" placeholder="Passwort" name="confirm-password">
-            </div>
-          </div>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Persönliche Einstellungen</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group row">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
+                      <div class="col-sm-5 col-xs-6">
+                        <input  type="text" class="form-control form-control-sm"
+                                id="Vorname" placeholder="Vorname"
+                                name="firstname" value="">
+                      </div>
+                      <div class="col-sm-5 col-xs-6">
+                        <input  type="text" class="form-control form-control-sm"
+                                id="Nachname" placeholder="Nachname"
+                                name="lastname" value="">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
+                      <div class="col-sm-10">
+                        <input  type="email" class="form-control form-control-sm"
+                                id="Email" placeholder="E-Mail" required
+                                name="email" value="">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Passwort" class="col-sm-2 form-control-label">Password</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control form-control-sm" id="Passwort" placeholder="Passwort" name="password">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Passwort_Conf" class="col-sm-2 form-control-label">Passwort bestätigen</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control form-control-sm" id="Passwort_Conf" placeholder="Passwort" name="confirm-password">
+                      </div>
+                    </div>
 
-          <div class="form-group row">
-            <!-- http://plugins.krajee.com/file-input -->
-            <label for="Tel" class="col-sm-2 form-control-label">Profilbild</label>
-            <div class="col-sm-10">
-              <input type="file" name="profil_img">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
-          <button type="submit" class="btn btn-success btn-sm" name="update-submit">Änderungen speichern</button>
-        </div>
-      </form>
+                    <div class="form-group row">
+                      <!-- http://plugins.krajee.com/file-input -->
+                      <label for="Tel" class="col-sm-2 form-control-label">Profilbild</label>
+                      <div class="col-sm-10">
+                        <input type="file" name="profil_img">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
+                    <button type="submit" class="btn btn-success btn-sm" name="update-submit">Änderungen speichern</button>
+                  </div>
+                </form>
 
                 <!--Ende Formular -->
 
@@ -295,7 +295,7 @@
                    </label>
                  </div>
                </div>
-               
+
                <div class="container">
                  <input type="submit" class="btn btn-default" value="zu meinen Freunden hinzufügen" name="new_friends" />
                 </form>
