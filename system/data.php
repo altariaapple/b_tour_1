@@ -193,7 +193,7 @@
     function get_friend_list($user_id){
           $sql = "SELECT * FROM user WHERE user_id in
                     (SELECT user_id_followed FROM follower2 WHERE user_id_follower = $user_id)
-                    AND  NOT user_id = $user_id;";
+                    AND  NOT user_id = $user_id;"; // weil sonst könnte man sich selber adden
       		return get_result($sql);
   	}
 
