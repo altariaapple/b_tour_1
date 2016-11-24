@@ -79,8 +79,28 @@
     return get_result($sql);
   }
 
-  function update_like($picID,$userID){
-    $sql = "INSERT INTO likes (user_id, picture_id) VALUES ('$userID', '$picID');";
+  function update_like($picID, $userID){
+    $check_sql = "SELECT * FROM likes2 WHERE liker = '$userID' AND picture = '$picID';";
+    $check_result = get_result($check_sql);
+    $row_count_check = mysqli_num_rows($check_result);
+    $like_ok = false;
+
+    if($row_count_check == 0){
+      count_like($picID);
+      $sql = "INSERT INTO likes2 (liker, picture) VALUES ('$userID', '$picID');";
+      header("Refresh:0");    // seite refreshen damit like gerade im counter angezeigt wird
+      return get_result($sql);
+    }
+    else{
+      $meldung = "Du hast dieses Bild bereits geliked";
+      echo $meldung;
+    }
+  }
+
+  function count_like($picID){
+    // like counter erhöhen
+    $sql = "UPDATE picture SET like_counter = like_counter+1 WHERE picture_id = '$picID';";
+    return get_result($sql);
   }
   /* ----------------------------------------------------------------------------- */
 
@@ -151,24 +171,43 @@
       } else{
         return false;
       }
-}
+    }
 
-function get_friend_list($user_id){
-    $sql = "SELECT * FROM user WHERE user_id in
-              (SELECT user_id_followed FROM follower2 WHERE user_id_follower = $user_id)
-              AND  NOT user_id = $user_id;";
-		return get_result($sql);
-	}
 
- function freund_hinzufuegen($user_id, $get_klicked_picture_owner){
-   $sql = "INSERT INTO follower2 (`user_id_follower`, `user_id_followed`) VALUES ($user_id, $get_klicked_picture_owner);";
-   return get_result($sql);
-}
 
-function remove_friends($user_id, $remove_friend){
-   $sql = "DELETE FROM follower2 WHERE user_id_follower = $user_id AND user_id_followed = $remove_friend;";
-   return get_result($sql);
- }
+    //meine bilder
+    function get_my_pictures($userID){
+      $sql = "SELECT * from picture WHERE uploader = '$userID';";
+      return get_result($sql);
+    }
+
+    //favoriten
+    function get_favorite_pictures($userID){
+      $sql = "SELECT * FROM picture p WHERE p.picture_id IN
+              (SELECT picture FROM likes2 WHERE liker = '$userID');";
+      return get_result($sql);
+    }
+
+    //followers
+    function get_friend_list($user_id){
+          $sql = "SELECT * FROM user WHERE user_id in
+                    (SELECT user_id_followed FROM follower2 WHERE user_id_follower = $user_id)
+                    AND  NOT user_id = $user_id;";
+      		return get_result($sql);
+  	}
+
+
+
+
+    function freund_hinzufuegen($user_id, $get_klicked_picture_owner){
+      $sql = "INSERT INTO follower2 (`user_id_follower`, `user_id_followed`) VALUES ($user_id, $get_klicked_picture_owner);";
+      return get_result($sql);
+   }
+
+   function remove_friends($user_id, $remove_friend){
+      $sql = "DELETE FROM follower2 WHERE user_id_follower = $user_id AND user_id_followed = $remove_friend;";
+      return get_result($sql);
+    }
 
 
   ?>

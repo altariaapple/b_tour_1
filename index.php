@@ -83,7 +83,7 @@
     </nav>
 
     <!--  Suchfeld Content -->
-    <div class="container suchfeld">
+    <div class="container suchfeld" style="display: none;">
       <div class="row">
         <h4>Suche nach diesen Tags</h4>
         <?php

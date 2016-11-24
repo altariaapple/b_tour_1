@@ -12,6 +12,9 @@
   $result = get_user($user_id);
   $user = mysqli_fetch_assoc($result);
 
+  $post_favorite_pictures = get_favorite_pictures($user_id);
+  $post_my_pictures = get_my_pictures($user_id);
+
   if(isset($_POST['update-submit']))
   {
     // $profilfoto = filter_inputs($_POST['profil_img']);
@@ -151,63 +154,63 @@ $friend_list = get_friend_list($user_id);
               <div class="col-md-8 col-sm-8">
                 <!--Start Formular -->
                 <form enctype="multipart/form-data" action="profil.php" method="post">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Persönliche Einstellungen</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group row">
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
-            <div class="col-sm-5 col-xs-6">
-              <input  type="text" class="form-control form-control-sm"
-                      id="Vorname" placeholder=""
-                      name="firstname" value="<?php echo $user['first_name'];?>">
-            </div>
-            <div class="col-sm-5 col-xs-6">
-              <input  type="text" class="form-control form-control-sm"
-                      id="Nachname" placeholder=""
-                      name="lastname" value="<?php echo $user['last_name'];?>">
 
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
-            <div class="col-sm-10">
-              <input  type="email" class="form-control form-control-sm"
-                      id="Email" placeholder="" required
-                      name="email" value="<?php echo $user['email'];?>">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Passwort" class="col-sm-2 form-control-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control form-control-sm" id="Passwort" placeholder="Passwort" name="password">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="Passwort_Conf" class="col-sm-2 form-control-label">Passwort bestätigen</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control form-control-sm" id="Passwort_Conf" placeholder="Passwort" name="confirm-password">
-            </div>
-          </div>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Persönliche Einstellungen</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group row">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
+                      <div class="col-sm-5 col-xs-6">
+                        <input  type="text" class="form-control form-control-sm"
+                                id="Vorname" placeholder=""
+                                name="firstname" value="<?php echo $user['first_name'];?>">
+                      </div>
+                      <div class="col-sm-5 col-xs-6">
+                        <input  type="text" class="form-control form-control-sm"
+                                id="Nachname" placeholder=""
+                                name="lastname" value="<?php echo $user['last_name'];?>">
 
-          <div class="form-group row">
-            <!-- http://plugins.krajee.com/file-input -->
-            <label for="Tel" class="col-sm-2 form-control-label">Profilbild</label>
-            <div class="col-sm-10">
-              <input type="file" name="profil_img">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
-          <button type="submit" class="btn btn-success btn-sm" name="update-submit">Änderungen speichern</button>
-        </div>
-      </form>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
+                      <div class="col-sm-10">
+                        <input  type="email" class="form-control form-control-sm"
+                                id="Email" placeholder="" required
+                                name="email" value="<?php echo $user['email'];?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Passwort" class="col-sm-2 form-control-label">Password</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control form-control-sm" id="Passwort" placeholder="Passwort" name="password">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Passwort_Conf" class="col-sm-2 form-control-label">Passwort bestätigen</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control form-control-sm" id="Passwort_Conf" placeholder="Passwort" name="confirm-password">
+                      </div>
+                    </div>
 
+                    <div class="form-group row">
+                      <!-- http://plugins.krajee.com/file-input -->
+                      <label for="Tel" class="col-sm-2 form-control-label">Profilbild</label>
+                      <div class="col-sm-10">
+                        <input type="file" name="profil_img">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>
+                    <button type="submit" class="btn btn-success btn-sm" name="update-submit">Änderungen speichern</button>
+                  </div>
+                </form>
                 <!--Ende Formular -->
 
  </section>
@@ -217,29 +220,56 @@ $friend_list = get_friend_list($user_id);
 
   <h2>Deine Fotos</h2>
       <!-- Fotos -->
-      <div class="row">
-          <div class="col-md-12 col-lg-12 portfolio-item">
-            <div class="col-md-4 col-sm-4">
-              <a href="#">
-                  <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-              </a>
+      <?php while($pictures = mysqli_fetch_assoc($post_my_pictures)) {
+          $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+          //die $pictureID wird als Parameter dem Bild-Link übergeben
+          $pictureID = $pictures['picture_id'];
+        ?>
+            <div class="col-md-4">
+                <a href="location.php?<?php echo $pictureID; ?>">
+                    <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
+                </a>
+                <h3>
+                    <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
+                </h3>
+                <p><?php echo $pictures['description']; ?></p>
+                <p>Tags</p>
+                <p>von <?php echo $post_picture_owner['first_name']. " " .$post_picture_owner['last_name']; ?></p>
             </div>
-            <div class="col-md-8 col-sm-8">
+
+      <?php }?>
+      </div>
  </section>
  <!--Ende Section Meine Fotos-->
 
  <section id="favoriten">
    <!--Start Section Favoriten-->
-    <h2>Das sind deine Favoriten</h2>
+    <h2>Fotos die du geliked hast</h2>
     <!-- Fotos -->
+    <!-- Locations Row -->
     <div class="row">
-        <div class="col-md-12 col-lg-12 portfolio-item">
-          <div class="col-md-4 col-sm-4">
-            <a href="#">
-                <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-            </a>
-                  </div>
-          <div class="col-md-8 col-sm-8">
+    <?php while($pictures = mysqli_fetch_assoc($post_favorite_pictures)) {
+        $post_picture_owner = mysqli_fetch_assoc(get_picture_owner($pictures['uploader']));
+
+        //die $pictureID wird als Parameter dem Bild-Link übergeben
+        $pictureID = $pictures['picture_id'];
+      ?>
+          <div class="col-md-4">
+              <a href="location.php?<?php echo $pictureID; ?>">
+                  <img class="img-responsive" src="../img_uploads/<?php echo $pictures['img_src']; ?>" alt="">
+              </a>
+              <h3>
+                  <a href="location.php?<?php echo $pictureID; ?>"><?php echo $pictures['title']; ?></a>
+              </h3>
+              <p><?php echo $pictures['description']; ?></p>
+              <p>Tags</p>
+              <p>von <?php echo $post_picture_owner['first_name']. " " .$post_picture_owner['last_name']; ?></p>
+          </div>
+
+    <?php }?>
+    </div>
+    <!-- /.row -->
  </section>
 
 <section id="follower">
@@ -267,11 +297,10 @@ $friend_list = get_friend_list($user_id);
                  <?php
                 }
                 ?>
-               </div>
+              </form>
              </div>
            </div>
          </div>
-         <!-- /User als Freund löschen -->
  </section>
 
         <!-- Footer -->
