@@ -121,7 +121,7 @@
   function bildupload($uploader, $like_counter, $description, $title, $img_src){
     $sql = "INSERT INTO picture (uploader, like_counter, description, title, img_src) VALUES ('$uploader', '$like_counter', '$description', '$title', '$img_src');";
    // echo '<script type="text/javascript">alert("' . $sql . '");</script>';
-   header("Refresh:0");
+     header("Refresh:0");
      return get_result($sql);
   }
 
@@ -166,6 +166,7 @@
 
       if($sql_ok)
       {
+        header("Refresh:0");
         return get_result($sql);
 
       } else{

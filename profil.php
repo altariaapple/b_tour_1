@@ -280,13 +280,13 @@ $friend_list = get_friend_list($user_id);
                 <?php while($user = mysqli_fetch_assoc($friend_list)) {?>
               <!-- User als Freund hinzufügen -->
                 <div class="form-group row p42-form-group">
-                  <input type="submit" name="del_friends" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id'] ?>" />
+                  <input type="submit" name="del_friends" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id']; ?>" />
                   <div class="btn-group col-xs-12">
                     <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default col-xs-2 col-sm-1 col-md-2">
                       <span class="glyphicon glyphicon-minus"></span>
                     </label>
                     <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default active col-xs-10 col-sm-11 col-md-10">
-                        <?php echo $user['first_name'] . " " . $user['last_name'] ?>
+                        <?php echo $user['first_name'] . " " . $user['last_name']; ?>
                     </label>
                     </div>
                   </div>
