@@ -197,7 +197,7 @@ if ($_FILES['post_img']['name'] != "") {
 
                     </div>
                   </div>
-                  <div class="form-group row">
+                  <!-- <div class="form-group row">
                     <label for="Email" class="col-sm-2 form-control-label">Location</label>
                     <div class="col-sm-10">
                         <input type="checkbox" name="location" value="bern"> bern <br>
@@ -207,9 +207,9 @@ if ($_FILES['post_img']['name'] != "") {
                     <label for="Passwort" class="col-sm-2 form-control-label">Tags</label>
                     <div class="col-sm-10">
                         <input type="checkbox" name="tags" value="sonnig"> sonnig <br>
-                  </div>
+                      </div>
+                  </div> -->
 
-                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Abbrechen</button>

@@ -280,7 +280,7 @@ $friend_list = get_friend_list($user_id);
                 <?php while($user = mysqli_fetch_assoc($friend_list)) {?>
               <!-- User als Freund hinzufügen -->
                 <div class="form-group row p42-form-group">
-                  <input type="checkbox" name="del_friends[]" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id'] ?>" />
+                  <input type="submit" name="del_friends" id="userid<?php echo $user['user_id'] ?>" autocomplete="off" value="<?php echo $user['user_id'] ?>" />
                   <div class="btn-group col-xs-12">
                     <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default col-xs-2 col-sm-1 col-md-2">
                       <span class="glyphicon glyphicon-minus"></span>
@@ -298,8 +298,6 @@ $friend_list = get_friend_list($user_id);
             </div>
           </div>
         </div>
-        <!-- /User als Freund löschen -->
-       <input type="submit" class="btn btn-default" name="freunde_loeschen" value="Freunde löschen" />
   </section>
 
 

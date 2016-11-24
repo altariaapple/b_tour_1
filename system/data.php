@@ -46,7 +46,7 @@
  /* ----------------------- */
 
  function get_all_pictures(){
-   $sql = "SELECT * FROM picture";
+   $sql = "SELECT * FROM picture ORDER BY timestamp DESC" ;
    return get_result($sql);
  }
 
@@ -121,6 +121,7 @@
   function bildupload($uploader, $like_counter, $description, $title, $img_src){
     $sql = "INSERT INTO picture (uploader, like_counter, description, title, img_src) VALUES ('$uploader', '$like_counter', '$description', '$title', '$img_src');";
    // echo '<script type="text/javascript">alert("' . $sql . '");</script>';
+   header("Refresh:0");
      return get_result($sql);
   }
 
