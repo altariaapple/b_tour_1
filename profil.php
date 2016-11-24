@@ -26,9 +26,6 @@
 
     $result = update_user($firstname, $lastname, $email, $password, $confirm_password, $user_id);
   }
-
-<<<<<<< HEAD
-=======
   //Freund hinzufüegen
   if(isset($_POST['del_friends'])){
     $remove_friend = filter_inputs($_POST['del_friends']);
@@ -36,8 +33,6 @@
 }
 
 $friend_list = get_friend_list($user_id);
-
->>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
 ?>
 
 <!DOCTYPE html>
@@ -195,9 +190,9 @@ $friend_list = get_friend_list($user_id);
 
           <div class="form-group row">
             <!-- http://plugins.krajee.com/file-input -->
-            <label for="Tel" class="col-sm-2 form-control-label">Profilbild</label>
+            <label for="Tel" class="col-sm-2 form-control-label"></label>
             <div class="col-sm-10">
-              <input type="file" name="profil_img">
+
             </div>
           </div>
         </div> <br>
@@ -270,52 +265,7 @@ $friend_list = get_friend_list($user_id);
  </section>
  <!--Ende Section Favoriten-->
 
- <section id="follower">
-   <!--Start Section Follower-->
-   <h2>Following</h2>
-   <form method="post" action="friends.php" >
-         <!-- Freund+ Button -->
-         <div class="form-group row p42-form-group">
-           <input type="checkbox" name="new_friends[]" id="userid2" autocomplete="off" value="2"/>
-           <div class="btn-group col-xs-6">
-             <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
-               <span class="glyphicon glyphicon-plus"></span>
-               <span> </span>
-             </label>
-             <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
-                 Simonne Bosiers
-             </label>
-           </div>
-         </div>
-         <!-- /Freund+ Button -->
-         <!-- Freund+ Button -->
-         <div class="form-group row p42-form-group">
-           <input type="checkbox" name="new_friends[]" id="userid3" autocomplete="off" value="3"/>
-           <div class="btn-group col-xs-6">
-             <label for="userid3" class="btn btn-default  col-xs-2 col-sm-1">
-               <span class="glyphicon glyphicon-plus"></span>
-               <span> </span>
-             </label>
-             <label for="userid3" class="btn btn-default active col-xs-10 col-sm-11">
-                 Rolf Hofstetter
-             </label>
-           </div>
-         </div>
-          <!-- /Freund+ Button -->
-          <input type="submit" class="btn btn-default" value="Diese Freunde löschen" />
-         </form>
 
-<<<<<<< HEAD
-         <h2>Follower</h2>
-         <form method="post" action="friends.php" >
-               <!-- Freund+ Button -->
-               <div class="form-group row p42-form-group">
-                 <input type="checkbox" name="new_friends[]" id="userid2" autocomplete="off" value="2"/>
-                 <div class="btn-group col-xs-6">
-                   <label for="userid2" class="btn btn-default  col-xs-2 col-sm-1">
-                     <span class="glyphicon glyphicon-plus"></span>
-                     <span> </span>
-=======
 <section id="follower">
  <!-- Meine Freunde -->
  <!-- Seitenleiste -->
@@ -332,38 +282,12 @@ $friend_list = get_friend_list($user_id);
                  <div class="btn-group col-xs-12">
                    <label for="userid<?php echo $user['user_id'] ?>" class="btn btn-default col-xs-2 col-sm-1 col-md-2">
                      <span class="glyphicon glyphicon-minus"></span>
->>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
                    </label>
                    <label for="userid2" class="btn btn-default active col-xs-10 col-sm-11">
                        Simonne Bosiers
                    </label>
                  </div>
-<<<<<<< HEAD
-               </div>
-               <!-- /Freund+ Button -->
-               <!-- Freund+ Button -->
-               <div class="form-group row p42-form-group">
-                 <input type="checkbox" name="new_friends[]" id="userid3" autocomplete="off" value="3"/>
-                 <div class="btn-group col-xs-6">
-                   <label for="userid3" class="btn btn-default  col-xs-2 col-sm-1">
-                     <span class="glyphicon glyphicon-plus"></span>
-                     <span> </span>
-                   </label>
-                   <label for="userid3" class="btn btn-default active col-xs-10 col-sm-11">
-                       Rolf Hofstetter
-                   </label>
-                 </div>
-               </div>
 
-               <div class="container">
-                 <input type="submit" class="btn btn-default" value="zu meinen Freunden hinzufügen" name="new_friends" />
-                </form>
-              </div>
-
-       <!--Ende Section Follower-->
-     </section>
-
-=======
                  <?php
                 }
                 ?>
@@ -372,7 +296,7 @@ $friend_list = get_friend_list($user_id);
            </div>
          </div>
  </section>
->>>>>>> e8920f5db7bc06e1986aef7903bf07999a2a50c0
+
 
         <!-- Footer -->
         <footer>
