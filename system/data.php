@@ -112,56 +112,45 @@
 
   /* ---- profil.php ---- */
   /* ----------------------- */
-    //alle anzeigen
+  // userdaten updaten
+  function update_user($firstname, $lastname, $email, $password, $user_id){
+      $sql_ok = false;
+      $sql = "UPDATE user SET ";
+    //   if($profilfoto != ""){ //wenn profilfoto nicht leer dann:
+    //     $sql .= "profilfoto = '$profilfoto', ";  //vorhandener string wird erweitert
+    //     $sql_ok = true;
+    // }
 
-//Freunde hinzufügen
+      if($firstname != ""){ //wenn profilfoto nicht leer dann:
+        $sql .= "first_name = '$firstname', ";  //vorhandener string wird erweitert
+        $sql_ok = true;
+      }
 
+      if($lastname != ""){ //wenn profilfoto nicht leer dann:
+        $sql .= "last_name = '$lastname', ";  //vorhandener string wird erweitert
+        $sql_ok = true;
+      }
 
-  function update_user($firstname, $lastname, $email, $password, $user_id)
-  {
-    $sql_ok = false;
-    $sql = "UPDATE user SET ";
-  //   if($profilfoto != ""){ //wenn profilfoto nicht leer dann:
-  //     $sql .= "profilfoto = '$profilfoto', ";  //vorhandener string wird erweitert
-  //     $sql_ok = true;
-  // }
+      if($email != ""){ //wenn profilfoto nicht leer dann:
+        $sql .= "email = '$email', ";  //vorhandener string wird erweitert
+        $sql_ok = true;
+      }
 
-    if($firstname != ""){ //wenn profilfoto nicht leer dann:
-      $sql .= "first_name = '$firstname', ";  //vorhandener string wird erweitert
-      $sql_ok = true;
-    }
+      if($password != "" && $confirm_password == $password){ //wenn profilfoto nicht leer dann:
+        $sql .= "password = '$password', ";  //vorhandener string wird erweitert
+        $sql_ok = true;
+      }
 
-    if($lastname != ""){ //wenn profilfoto nicht leer dann:
-      $sql .= "last_name = '$lastname', ";  //vorhandener string wird erweitert
-      $sql_ok = true;
-  }
+      $sql = substr_replace($sql, ' ', -2, 1);
+      $sql .= "WHERE user_id = $user_id;";
 
-    if($email != ""){ //wenn profilfoto nicht leer dann:
-      $sql .= "email = '$email', ";  //vorhandener string wird erweitert
-      $sql_ok = true;
-  }
+      if($sql_ok)
+      {
+        return get_result($sql);
 
-    if($password != "" && $confirm_password == $password){ //wenn profilfoto nicht leer dann:
-      $sql .= "password = '$password', ";  //vorhandener string wird erweitert
-      $sql_ok = true;
-    }
-    $sql = substr_replace($sql, ' ', -2, 1);
-
-    $sql .= "WHERE user_id = $user_id;";
-
-  if($sql_ok)
-  {
-    return get_result($sql);
-
-  } else{
-    return false;
-    }
-  }
-  function get_no_friend_list($user_id){
-  $sql = "SELECT * FROM user WHERE user_id NOT in
-    (SELECT friend FROM userrelations WHERE user = $user_id)
-    AND  NOT user_id = $user_id;";
-  return get_result($sql);
+      } else{
+        return false;
+      }
 }
 
 function get_friend_list($user_id){
@@ -170,7 +159,6 @@ function get_friend_list($user_id){
               AND  NOT user_id = $user_id;";
 		return get_result($sql);
 	}
-
 
  function freund_hinzufuegen(){
    $sql = "INSERT INTO follower2 (`user_id_follower`, `user_id_followed`) VALUES ($user_id, $get_klicked_picture_owner);";

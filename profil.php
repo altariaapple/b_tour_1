@@ -9,7 +9,8 @@
 
   require_once('system/data.php');
 
-  require_once('system/data.php');
+  $result = get_user($user_id);
+  $user = mysqli_fetch_assoc($result);
 
   if(isset($_POST['update-submit']))
   {
@@ -156,21 +157,22 @@
             <label for="Vorname" class="col-sm-2 col-xs-12 form-control-label">Name</label>
             <div class="col-sm-5 col-xs-6">
               <input  type="text" class="form-control form-control-sm"
-                      id="Vorname" placeholder="Vorname"
-                      name="firstname" value="">
+                      id="Vorname" placeholder=""
+                      name="firstname" value="<?php echo $user['first_name'];?>">
             </div>
             <div class="col-sm-5 col-xs-6">
               <input  type="text" class="form-control form-control-sm"
-                      id="Nachname" placeholder="Nachname"
-                      name="lastname" value="">
+                      id="Nachname" placeholder=""
+                      name="lastname" value="<?php echo $user['last_name'];?>">
+
             </div>
           </div>
           <div class="form-group row">
             <label for="Email" class="col-sm-2 form-control-label">E-Mail</label>
             <div class="col-sm-10">
               <input  type="email" class="form-control form-control-sm"
-                      id="Email" placeholder="E-Mail" required
-                      name="email" value="">
+                      id="Email" placeholder="" required
+                      name="email" value="<?php echo $user['email'];?>">
             </div>
           </div>
           <div class="form-group row">
